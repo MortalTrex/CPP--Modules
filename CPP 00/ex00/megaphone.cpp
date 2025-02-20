@@ -20,7 +20,7 @@ int main(int argc, char **argv)
             j = 0;
             while (argv[i][j])
             {
-                std::cout << up(argv[i][j]) ;
+                std::cout << up(argv[i][j]);
                 j++;
             }
             i++;

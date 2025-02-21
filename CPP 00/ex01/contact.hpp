@@ -10,7 +10,6 @@ class Contact
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
-		void set_contact();
 };
 
 #endif

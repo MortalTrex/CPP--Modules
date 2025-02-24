@@ -6,7 +6,7 @@ class Phonebook
 	public:
 		Contact contacts[8];
 		void add_contact(int i);
-		void search_contact(int i);
+		void search_contact();
 };
 
 #endif

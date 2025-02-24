@@ -3,6 +3,10 @@
 
 class Contact
 {
+	private:
+	
+
+
 	public:
 		int index;
 		std::string first_name;

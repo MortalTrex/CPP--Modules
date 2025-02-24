@@ -1,21 +1,38 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 #include "phonebook.hpp"
 #include "contact.hpp"
 
-void Phonebook::search_contact(int i)
+
+static void print_info(std::string info)
 {
-	i = 0;
+	if (info.length() > 10)
+			std::cout << info.substr(0, 9) << ".";
+		else
+			std::cout << info;
+}
+
+void Phonebook::search_contact()
+{
+	int i = 0;
+	std::string search_index;
+
+	std::cout << "Enter the index of the contact [1 to 8]: ";
+	std::getline(std::cin, search_index);
+
 	while (i < 8)
 	{
+		if (contacts[i].index == atoi(search_index.c_str()))
+		{
 			std::cout << "\033[1;34m---------------------------------------------\033[0m" << std::endl
-					  << "\033[1;32mIndex : \033[0m" << contacts[i].index << std::endl
-					  << "\033[1;32mFirst Name : \033[0m" << contacts[i].first_name << std::endl
-					  << "\033[1;32mLast Name :  \033[0m" << contacts[i].last_name << std::endl
-					  << "\033[1;32mNickname : \033[0m" << contacts[i].nickname << std::endl
-					  << "\033[1;32mPhone Number : \033[0m" << contacts[i].phone_number << std::endl
-					  << "\033[1;32mDarkest Secret : \033[0m" << contacts[i].darkest_secret << std::endl
-					  << "\033[1;34m---------------------------------------------\033[0m" << std::endl;
+						<< "|  INDEX | FIRST NAME | LAST NAME | NICKNAME     |" << std::endl
+					  << "\033[1;32m|     \033[0m" << contacts[i].index
+					  << "\033[1;32m| \033[0m"; print_info(contacts[i].first_name);
+					  std::cout << "\033[1;32m|  \033[0m"; print_info(contacts[i].last_name);
+					  std::cout << "\033[1;32m| \033[0m"; print_info(contacts[i].nickname); std::cout << "   |" << std::endl;
+					  std::cout << "\033[1;34m---------------------------------------------\033[0m" << std::endl;
+		}
 		i++;
 	}
 }
@@ -33,11 +50,10 @@ void Phonebook::add_contact(int i)
 
 	std::cout << "Enter phone number: ";
 	std::getline(std::cin, this->contacts[i].phone_number);
-                                                                                                                                                                                                                                                                                                          
+
 	std::cout << "Enter darkest secret: ";
 	std::getline(std::cin, this->contacts[i].darkest_secret);
 }
-
 
 int main(int argc, char **argv)
 {
@@ -54,8 +70,14 @@ int main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	while(1)
+	std::cout << "\033[1;36m*********************************************\033[0m" << std::endl;
+	std::cout << "\033[1;36m*                                           *\033[0m" << std::endl;
+	std::cout << "\033[1;36m*               PHONEBOOK                   *\033[0m" << std::endl;
+	std::cout << "\033[1;36m*                                           *\033[0m" << std::endl;
+	std::cout << "\033[1;36m*********************************************\033[0m" << std::endl;
+	while (1)
 	{
+		std::cout << "\033[1;36mEnter your command [ADD | SEARCH | EXIT]: \033[0m";
 		std::getline(std::cin, command);
 		if (command == "ADD")
 		{
@@ -65,7 +87,7 @@ int main(int argc, char **argv)
 				i = 0;
 		}
 		else if (command == "SEARCH")
-			phonebook.search_contact(i);
+			phonebook.search_contact();
 		else if (command == "EXIT")
 			break;
 	}

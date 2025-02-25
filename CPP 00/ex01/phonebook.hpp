@@ -4,6 +4,8 @@
 class Phonebook
 {
 	public:
+		// Phonebook();
+		// ~Phonebook();
 		Contact contacts[8];
 		void add_contact(int i);
 		void search_contact();

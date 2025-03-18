@@ -2,6 +2,14 @@
 #include <iostream>
 #include <string>
 
+Contact::Contact()
+{
+}
+
+Contact::~Contact()
+{
+}
+
 void Contact::setIndex(int index)
 {
     this->_index = index;

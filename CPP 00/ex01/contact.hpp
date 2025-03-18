@@ -14,6 +14,8 @@ private:
     std::string _darkest_secret;
 
 public:
+    Contact();
+    ~Contact();
     void setIndex(int index);
     void setFirstName(std::string first_name);
     void setLastName(std::string last_name);

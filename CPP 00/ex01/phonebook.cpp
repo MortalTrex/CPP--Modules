@@ -4,7 +4,7 @@
 #include "phonebook.hpp"
 #include "contact.hpp"
 
-static bool isdigit(std::string str)
+static bool verif_phonenumber(std::string str)
 {
     if (str > "9" || str < "0")
     {
@@ -20,6 +20,15 @@ static void print_info(std::string info)
         std::cout << "| " << info.substr(0, 9) << "." << " |";
     else
         std::cout << "| " << info << " |";
+}
+
+
+Phonebook::Phonebook()		
+{
+}
+
+Phonebook::~Phonebook()
+{
 }
 
 void Phonebook::search_contact()
@@ -80,7 +89,7 @@ void Phonebook::add_contact(int i)
         if (std::cin.eof())
             return;
     }
-    while (this->contacts[i].getPhoneNumber().empty() || isdigit(this->contacts[i].getPhoneNumber()) == false)
+    while (this->contacts[i].getPhoneNumber().empty() || verif_phonenumber(this->contacts[i].getPhoneNumber()) == false)
     {
         std::cout << "Enter phone number: ";
         std::string phoneNumber;

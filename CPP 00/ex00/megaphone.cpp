@@ -2,21 +2,15 @@
 
 int main(int argc, char **argv)
 {
-    int i = 1;
-    int j = 0;
     if (argc == 1)
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
     else
     {
-        while(argv[i])
+        for (int i = 1; i < argc; i++)
         {
-            j = 0;
-            while (argv[i][j])
-            {
-                std::cout << (char)toupper(argv[i][j]);
-                j++;
+            for (int j = 0; argv[i][j]; j++){
+                std::cout << static_cast<char>(toupper(argv[i][j]));
             }
-            i++;
         }
     }
     std::cout << std::endl;

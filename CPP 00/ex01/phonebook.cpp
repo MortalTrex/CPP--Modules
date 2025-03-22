@@ -1,35 +1,36 @@
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include <iomanip>
-#include "phonebook.hpp"
 #include "contact.hpp"
+#include "phonebook.hpp"
+#include <iomanip>
+#include <iostream>
+#include <stdlib.h>
+#include <string>
 
 static bool verif_phonenumber(std::string str)
 {
-    int i = 0;
-    while (str[i])
+    for (int i = 0; str[i]; i++)
     {
-        if (isdigit(str[i]) == false)
+        if (str[i] < '0' || str[i] > '9')
         {
             std::cout << "\033[1;31mInvalid phone number\033[0m" << std::endl;
-            return false;
+            return (false);
         }
-        i++;
     }
-    return true;
+    return (true);
 }
 
 static void print_info(std::string info)
 {
     if (info.length() > 10)
-        std::cout << std::setw(10) << info.substr(0, 9) + "." << " |";
+        std::cout << std::setw(10) << info.substr(0, 9) + "."
+                  << " |";
     else
         std::cout << std::setw(10) << info << " |";
 }
 
 Phonebook::Phonebook()
 {
+    for (int i = 0; i < 8; i++)
+        set_Contacts(i);
 }
 
 Phonebook::~Phonebook()
@@ -47,11 +48,14 @@ void Phonebook::set_Contacts(int i)
 
 void Phonebook::print_table()
 {
-    int i = 0;
-    std::cout << "\033[1;33m+------------+------------+------------+------------+\033[0m" << std::endl;
-    std::cout << "\033[1;33m| " << std::setw(10) << "INDEX" << " | " << std::setw(10) << "FIRSTNAME" << " | " << std::setw(10) << "LASTNAME" << " | " << std::setw(10) << "NICKNAME" << " |\033[0m" << std::endl;
-    std::cout << "\033[1;33m+------------+------------+------------+------------+\033[0m" << std::endl;
-    while (i < 8)
+    std::cout << "\033[1;33m+------------+------------+------------+------------+\n"
+              << "| " << std::setw(10) << "INDEX"
+              << " | " << std::setw(10) << "FIRSTNAME"
+              << " | " << std::setw(10) << "LASTNAME"
+              << " | " << std::setw(10) << "NICKNAME"
+              << " |\n"
+              << "+------------+------------+------------+------------+\033[0m" << std::endl;
+    for (int i = 0; i < 8; i++)
     {
         if (!_contacts[i].getFirstName().empty())
         {
@@ -61,40 +65,32 @@ void Phonebook::print_table()
             print_info(_contacts[i].getNickname());
             std::cout << std::endl;
         }
-        i++;
     }
     std::cout << "\033[1;33m+------------+------------+------------+------------+\033[0m" << std::endl;
 }
 
 void Phonebook::search_contact()
 {
-    int i = 0;
-    std::string search_index;
+    int index_Contact;
 
+    std::string input_index;
     std::cout << "\033[1;34mEnter the index of the contact [1 to 8]: \033[0m";
-    std::getline(std::cin, search_index);
-    if (atoi(search_index.c_str()) < 1 || atoi(search_index.c_str()) > 8)
+    std::getline(std::cin, input_index);
+    index_Contact = std::atoi(input_index.c_str()) - 1;
+    if (index_Contact < 0 || index_Contact > 7)
     {
         std::cout << "\033[1;31mInvalid index\033[0m" << std::endl;
         return;
     }
-    while (i < 8)
+    if (_contacts[index_Contact].getFirstName().empty())
     {
-        if (_contacts[i].getIndex() == atoi(search_index.c_str()))
-        {
-            if (_contacts[i].getFirstName().empty())
-            {
-                std::cout << "\033[1;31mContact not found\033[0m" << std::endl;
-                return;
-            }
-            std::cout << "First name: " << _contacts[i].getFirstName() << std::endl;
-            std::cout << "Last name: " << _contacts[i].getLastName() << std::endl;
-            std::cout << "Nickname: " << _contacts[i].getNickname() << std::endl;
-            std::cout << "Phone number: " << _contacts[i].getPhoneNumber() << std::endl;
-            break;
-        }
-        i++;
+        std::cout << "\033[1;31mContact not found\033[0m" << std::endl;
+        return;
     }
+    std::cout << "First name: " << _contacts[index_Contact].getFirstName() << std::endl;
+    std::cout << "Last name: " << _contacts[index_Contact].getLastName() << std::endl;
+    std::cout << "Nickname: " << _contacts[index_Contact].getNickname() << std::endl;
+    std::cout << "Phone number: " << _contacts[index_Contact].getPhoneNumber() << std::endl;
 }
 
 void Phonebook::add_contact(int i)
@@ -126,7 +122,7 @@ void Phonebook::add_contact(int i)
             return;
         this->_contacts[i].setNickname(nickname);
     }
-    while (this->_contacts[i].getPhoneNumber().empty() || verif_phonenumber(this->_contacts[i].getPhoneNumber()) == false)
+    while (this->_contacts[i].getPhoneNumber().empty() || !verif_phonenumber(this->_contacts[i].getPhoneNumber()))
     {
         std::cout << "Enter phone number: ";
         std::string phoneNumber;

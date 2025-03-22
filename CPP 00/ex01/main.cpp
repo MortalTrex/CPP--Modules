@@ -12,20 +12,14 @@ int main(int argc, char **argv)
     Phonebook phonebook;
     std::string command;
 
-    int i = 0;
-    while (i < 8)
-    {
-        phonebook.set_Contacts(i);
-        i++;
-    }
     bool restart = false;
-    i = 0;
-    std::cout << "\033[1;36m*********************************************\033[0m" << std::endl;
-    std::cout << "\033[1;36m*                                           *\033[0m" << std::endl;
-    std::cout << "\033[1;36m*               PHONEBOOK                   *\033[0m" << std::endl;
-    std::cout << "\033[1;36m*                                           *\033[0m" << std::endl;
-    std::cout << "\033[1;36m*********************************************\033[0m" << std::endl;
-    while (1)
+    int nbContact = 0;
+    std::cout << "\033[1;36m*********************************************\n"
+              << "*                                           *\n"
+              << "*               PHONEBOOK                   *\n"
+              << "*                                           *\n"
+              << "*********************************************\033[0m" << std::endl;
+    while (true)
     {
         std::cout << "\033[1;36mEnter your command [ADD | SEARCH | EXIT]: \033[0m";
         std::getline(std::cin, command);
@@ -33,14 +27,14 @@ int main(int argc, char **argv)
             break;
         if (command == "ADD")
         {
-            if (restart == true)
-                phonebook.set_Contacts(i);
-            phonebook.add_contact(i);
-            i++;
-            if (i == 8)
+            if (restart)
+                phonebook.set_Contacts(nbContact);
+            phonebook.add_contact(nbContact);
+            nbContact++;
+            if (nbContact == 8)
             {
                 restart = true;
-                i = 0;
+                nbContact = 0;
             }
         }
         else if (command == "SEARCH")

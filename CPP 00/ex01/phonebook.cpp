@@ -37,12 +37,12 @@ Phonebook::~Phonebook()
 }
 void Phonebook::set_Contacts(int i)
 {
-    contacts[i].setIndex(i + 1);
-    contacts[i].setFirstName("");
-    contacts[i].setLastName("");
-    contacts[i].setNickname("");
-    contacts[i].setPhoneNumber("");
-    contacts[i].setDarkestSecret("");
+    _contacts[i].setIndex(i + 1);
+    _contacts[i].setFirstName("");
+    _contacts[i].setLastName("");
+    _contacts[i].setNickname("");
+    _contacts[i].setPhoneNumber("");
+    _contacts[i].setDarkestSecret("");
 }
 
 void Phonebook::print_table()
@@ -53,12 +53,12 @@ void Phonebook::print_table()
     std::cout << "\033[1;33m+------------+------------+------------+------------+\033[0m" << std::endl;
     while (i < 8)
     {
-        if (!contacts[i].getFirstName().empty())
+        if (!_contacts[i].getFirstName().empty())
         {
-            std::cout << "| " << std::setw(10) << contacts[i].getIndex() << " | ";
-            print_info(contacts[i].getFirstName());
-            print_info(contacts[i].getLastName());
-            print_info(contacts[i].getNickname());
+            std::cout << "| " << std::setw(10) << _contacts[i].getIndex() << " | ";
+            print_info(_contacts[i].getFirstName());
+            print_info(_contacts[i].getLastName());
+            print_info(_contacts[i].getNickname());
             std::cout << std::endl;
         }
         i++;
@@ -80,17 +80,17 @@ void Phonebook::search_contact()
     }
     while (i < 8)
     {
-        if (contacts[i].getIndex() == atoi(search_index.c_str()))
+        if (_contacts[i].getIndex() == atoi(search_index.c_str()))
         {
-            if (contacts[i].getFirstName().empty())
+            if (_contacts[i].getFirstName().empty())
             {
                 std::cout << "\033[1;31mContact not found\033[0m" << std::endl;
                 return;
             }
-            std::cout << "First name: " << contacts[i].getFirstName() << std::endl;
-            std::cout << "Last name: " << contacts[i].getLastName() << std::endl;
-            std::cout << "Nickname: " << contacts[i].getNickname() << std::endl;
-            std::cout << "Phone number: " << contacts[i].getPhoneNumber() << std::endl;
+            std::cout << "First name: " << _contacts[i].getFirstName() << std::endl;
+            std::cout << "Last name: " << _contacts[i].getLastName() << std::endl;
+            std::cout << "Nickname: " << _contacts[i].getNickname() << std::endl;
+            std::cout << "Phone number: " << _contacts[i].getPhoneNumber() << std::endl;
             break;
         }
         i++;
@@ -99,49 +99,49 @@ void Phonebook::search_contact()
 
 void Phonebook::add_contact(int i)
 {
-    while (this->contacts[i].getFirstName().empty())
+    while (this->_contacts[i].getFirstName().empty())
     {
         std::cout << "Enter first name: ";
         std::string firstName;
         std::getline(std::cin, firstName);
-        this->contacts[i].setFirstName(firstName);
-        if (std::cin.eof())
+        if (!std::cin)
             return;
+        this->_contacts[i].setFirstName(firstName);
     }
-    while (this->contacts[i].getLastName().empty())
+    while (this->_contacts[i].getLastName().empty())
     {
         std::cout << "Enter last name: ";
         std::string lastName;
         std::getline(std::cin, lastName);
-        this->contacts[i].setLastName(lastName);
-        if (std::cin.eof())
+        if (!std::cin)
             return;
+        this->_contacts[i].setLastName(lastName);
     }
-    while (this->contacts[i].getNickname().empty())
+    while (this->_contacts[i].getNickname().empty())
     {
         std::cout << "Enter nickname: ";
         std::string nickname;
         std::getline(std::cin, nickname);
-        this->contacts[i].setNickname(nickname);
-        if (std::cin.eof())
+        if (!std::cin)
             return;
+        this->_contacts[i].setNickname(nickname);
     }
-    while (this->contacts[i].getPhoneNumber().empty() || verif_phonenumber(this->contacts[i].getPhoneNumber()) == false)
+    while (this->_contacts[i].getPhoneNumber().empty() || verif_phonenumber(this->_contacts[i].getPhoneNumber()) == false)
     {
         std::cout << "Enter phone number: ";
         std::string phoneNumber;
         std::getline(std::cin, phoneNumber);
-        this->contacts[i].setPhoneNumber(phoneNumber);
-        if (std::cin.eof())
+        if (!std::cin)
             return;
+        this->_contacts[i].setPhoneNumber(phoneNumber);
     }
-    while (this->contacts[i].getDarkestSecret().empty())
+    while (this->_contacts[i].getDarkestSecret().empty())
     {
         std::cout << "Enter darkest secret: ";
         std::string darkestSecret;
         std::getline(std::cin, darkestSecret);
-        this->contacts[i].setDarkestSecret(darkestSecret);
-        if (std::cin.eof())
+        if (!std::cin)
             return;
+        this->_contacts[i].setDarkestSecret(darkestSecret);
     }
 }

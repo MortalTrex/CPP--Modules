@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     {
         std::cout << "\033[1;36mEnter your command [ADD | SEARCH | EXIT]: \033[0m";
         std::getline(std::cin, command);
-        if (std::cin.eof())
+        if (!std::cin)
             break;
         if (command == "ADD")
         {

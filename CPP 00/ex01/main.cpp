@@ -8,7 +8,10 @@ int main(int argc, char **argv)
 {
     (void)argv;
     if (argc != 1)
-        return 0;
+    {
+        std::cout << "\033[1;31mInvalid number of arguments\033[0m" << std::endl;
+        return 1;
+    }
     Phonebook phonebook;
     std::string command;
 

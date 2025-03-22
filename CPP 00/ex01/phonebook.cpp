@@ -7,17 +7,16 @@
 
 static bool verif_phonenumber(std::string str)
 {
-    //int i = 0;
-    (void)str;
-    // while (str[i])
-    // {
-    //     if (isdigit(str[i]) == false)
-    //     {
-    //         std::cout << "\033[1;31mInvalid phone number\033[0m" << std::endl;
-    //         return false;
-    //     }
-    //     i++;
-    // }
+    int i = 0;
+    while (str[i])
+    {
+        if (isdigit(str[i]) == false)
+        {
+            std::cout << "\033[1;31mInvalid phone number\033[0m" << std::endl;
+            return false;
+        }
+        i++;
+    }
     return true;
 }
 
@@ -36,19 +35,14 @@ Phonebook::Phonebook()
 Phonebook::~Phonebook()
 {
 }
-void Phonebook::set_Contacts()
+void Phonebook::set_Contacts(int i)
 {
-    int i = 0;
-    while (i < 8)
-    {
-        contacts[i].setIndex(i + 1);
-        contacts[i].setFirstName("");
-        contacts[i].setLastName("");
-        contacts[i].setNickname("");
-        contacts[i].setPhoneNumber("");
-        contacts[i].setDarkestSecret("");
-        i++;
-    }
+    contacts[i].setIndex(i + 1);
+    contacts[i].setFirstName("");
+    contacts[i].setLastName("");
+    contacts[i].setNickname("");
+    contacts[i].setPhoneNumber("");
+    contacts[i].setDarkestSecret("");
 }
 
 void Phonebook::print_table()

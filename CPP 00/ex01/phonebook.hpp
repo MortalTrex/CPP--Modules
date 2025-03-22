@@ -11,7 +11,7 @@ class Phonebook
 		~Phonebook();
 		void add_contact(int i);
 		void search_contact();
-		void set_Contacts();
+		void set_Contacts(int i);
 		void print_table();
 };
 #endif

@@ -13,7 +13,12 @@ int main(int argc, char **argv)
     std::string command;
 
     int i = 0;
-    phonebook.set_Contacts();
+    while (i < 8)
+    {
+        phonebook.set_Contacts(i);
+        i++;
+    }
+    bool restart = false;
     i = 0;
     std::cout << "\033[1;36m*********************************************\033[0m" << std::endl;
     std::cout << "\033[1;36m*                                           *\033[0m" << std::endl;
@@ -28,11 +33,15 @@ int main(int argc, char **argv)
             break;
         if (command == "ADD")
         {
+            if (restart == true)
+                phonebook.set_Contacts(i);
             phonebook.add_contact(i);
             i++;
-            std::cout << i << std::endl;
             if (i == 8)
+            {
+                restart = true;
                 i = 0;
+            }
         }
         else if (command == "SEARCH")
         {

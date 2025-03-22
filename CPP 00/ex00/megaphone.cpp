@@ -1,12 +1,5 @@
 #include <iostream>
 
-char up(char c)
-{
-    if (c >= 'a' && c <= 'z')
-        c = c - 32;
-    return(c);
-}
-
 int main(int argc, char **argv)
 {
     int i = 1;
@@ -20,11 +13,11 @@ int main(int argc, char **argv)
             j = 0;
             while (argv[i][j])
             {
-                std::cout << up(argv[i][j]);
+                std::cout << (char)toupper(argv[i][j]);
                 j++;
             }
             i++;
         }
     }
-    std::cout << '\n' ;
+    std::cout << std::endl;
 }

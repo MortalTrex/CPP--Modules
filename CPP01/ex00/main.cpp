@@ -1,16 +1,13 @@
 #include "Zombie.hpp"
 
-void announce ( void )
-{
-	std::cout << "Braiiiiiiinnnssss..." << std::endl;
-}
-
 int main(void)
 {
-	Zombie*	zombie;
+	Zombie *zombie;
 
-	//zombie = newZombie("Zombie1");
+	zombie = newZombie("Zombie1");
 	zombie->announce();
 
+	randomChump(foo);
+	delete zombie;
 	return (0);
 }

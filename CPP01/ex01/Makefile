@@ -1,9 +1,8 @@
-NAME = megaphone
+NAME = brainz
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	newZombie.cpp\
-	randomChump.cpp\
+	zombieHorde.cpp\
 	Zombie.cpp
 
 OBJ = $(SRC:.cpp=.o)

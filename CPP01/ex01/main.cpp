@@ -2,6 +2,6 @@
 
 int main(void)
 {
-	zombieHorde(5, "foo");
+	zombieHorde(42, "Mario");
 	return (0);
 }

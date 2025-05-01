@@ -1,7 +1,8 @@
-NAME = megaphone
+NAME = replace
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
+		replace.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -2,15 +2,15 @@
 
 void Zombie::announce(void)
 {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie::Zombie(std::string name) : name(name)
+Zombie::Zombie(std::string name) : _name(name)
 {
 	std::cout << "Constructor called" << std::endl;
 }
 
 Zombie::~Zombie(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << this->_name << " is died due to the destructor" << std::endl;
 }

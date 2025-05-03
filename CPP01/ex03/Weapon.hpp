@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:24:17 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/05/03 20:24:18 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/03 20:45:53 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class Weapon
 {
 	private:
-		std::string type;
+		std::string _type;
 
 	public:
 		Weapon(std::string type);

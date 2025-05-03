@@ -6,13 +6,13 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:24:15 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/05/03 20:24:16 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/03 20:46:09 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-Weapon::Weapon(std::string type) : type(type)
+Weapon::Weapon(std::string type) : _type(type)
 {
     if (type.empty())
     {
@@ -27,7 +27,7 @@ Weapon::~Weapon()
 
 std::string Weapon::getType() const
 {
-    return (this->type);
+    return (this->_type);
 }
 
 void Weapon::setType(std::string type)
@@ -37,5 +37,5 @@ void Weapon::setType(std::string type)
         std::cerr << "Error: type is empty" << std::endl;
         std::exit(1);
     }
-    this->type = type;
+    this->_type = type;
 }

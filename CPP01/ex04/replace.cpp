@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:23:53 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/05/03 20:23:54 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/03 21:04:49 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ void ft_replace(std::string filename, std::string s1, std::string s2)
 		}
 		newfile << line << std::endl;
 	}
+	file.close();
+	newfile.close();
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 20:24:11 by rbalazs           #+#    #+#             */
+/*   Updated: 2025/05/03 20:24:12 by rbalazs          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 #include "Weapon.hpp"
@@ -5,7 +17,7 @@
 int main()
 {
 	{
-		Weapon club = Weapon("crude spiked club");
+		Weapon club = Weapon("club");
 		HumanA bob("Bob", club);
 		bob.attack();
 		club.setType("some other type of club");

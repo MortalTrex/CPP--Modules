@@ -1,7 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 20:24:06 by rbalazs           #+#    #+#             */
+/*   Updated: 2025/05/03 20:24:07 by rbalazs          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "HumanB.hpp"
 
 HumanB::HumanB(std::string name) : _name(name), _weapon()
 {
+    if (name.empty())
+    {
+        std::cerr << "Error: name for HumanB is empty" << std::endl;
+        std::exit(1);
+    }
 }
 
 HumanB::~HumanB()

@@ -1,16 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 20:24:29 by rbalazs           #+#    #+#             */
+/*   Updated: 2025/05/03 20:24:30 by rbalazs          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
-void Zombie::announce(void)
+void Zombie::announce()
 {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->_name << " number " << this->_number << " : BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie::Zombie(std::string name) : name(name)
+void Zombie::setName_Number(std::string name, int number)
 {
-	std::cout << "Constructor called" << std::endl;
+	this->_name = name;
+	this->_number = number;
 }
 
-Zombie::~Zombie(void)
+Zombie::Zombie()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "\033[32mConstructor called\033[0m" << std::endl;
+}
+
+Zombie::~Zombie()
+{
+	std::cout << "\033[31m" << this->_name << " number " 
+		<< this->_number << " is died due to the destructor.\033[0m" << std::endl;
 }

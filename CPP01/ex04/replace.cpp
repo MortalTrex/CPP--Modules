@@ -2,18 +2,29 @@
 
 void ft_replace(std::string filename, std::string s1, std::string s2)
 {
-	std::string line;
-	std::ifstream file(filename.c_str());
+	size_t 			pos;
+	std::string 	line;
+	std::ifstream	file(filename.c_str());
 	if (!file.is_open())
 	{
-    	std::cerr << "Error: cannot open " << filename << std::endl;
+		std::cerr << "Error: cannot open " << filename << std::endl;
 		return ;
 	}
-
+	std::ofstream 	newfile("newfile.txt");
+	if (!newfile)
+	{
+		std::cerr << "Error: cannot create new file " << std::endl;
+		return ;
+	}
 	while(std::getline(file, line))
 	{
-		std::cout << line << std::endl;
-		std::cout << s1 << std::endl;
-		std::cout << s2 << std::endl;
+		pos = line.find(s1);
+		while (pos != std::string::npos)
+		{
+			line.erase(pos, s1.length());
+			line.insert(pos, s2);
+			pos = line.find(s1);
+		}
+		newfile << line << std::endl;
 	}
 }

@@ -1,10 +1,8 @@
-NAME = brainz
+NAME = Fixed
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	newZombie.cpp\
-	randomChump.cpp\
-	Zombie.cpp
+	Fixed.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

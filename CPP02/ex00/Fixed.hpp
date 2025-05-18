@@ -12,7 +12,7 @@ class Fixed
         int                 _rawBits;
         static const int    _nbBits = 8;
 
-    public: 
+    public:
         Fixed();
         Fixed(const Fixed &copy);
         ~Fixed();

@@ -6,12 +6,11 @@
 #include <string>
 
 
-
 class Fixed
 {
     private:
-        int                 _rawBits;
-        static const int    _nbBits = 8;
+        int                 _fixedPoint;
+        static const int    _nbBits;
 
     public: 
         Fixed();

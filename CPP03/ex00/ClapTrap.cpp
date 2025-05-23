@@ -5,6 +5,30 @@ ClapTrap::ClapTrap() : _name(""), _HitPoints(10), _EnergyPoints(10), _AttackDama
     std::cout << "\033[31mConstructor has been called\033[0m" << std::endl;
 }
 
+ClapTrap::ClapTrap(std::string name) : _name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+{
+    std::cout << "\033[31mConstructor name has been called\033[0m" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other)
+{
+    std::cout << "\033[31mCopy constructor has been called\033[0m" << std::endl;
+    *this = other;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+    std::cout << "\033[31mCopy assignment operator has been called\033[0m" << std::endl;
+    if (this != &other)
+    {
+        _name = other._name;
+        _HitPoints = other._HitPoints;
+        _EnergyPoints = other._EnergyPoints;
+        _AttackDamage = other._AttackDamage;
+    }
+    return *this;
+}
+
 ClapTrap::~ClapTrap()
 {
     std::cout << "\033[31mDestructor has been called\033[0m" << std::endl;

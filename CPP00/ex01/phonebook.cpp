@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:41:11 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/03/23 19:41:12 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/23 20:42:53 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ Phonebook::Phonebook()
 {
     for (int i = 0; i < 8; i++)
         set_Contacts(i);
+        
 }
 
 Phonebook::~Phonebook()

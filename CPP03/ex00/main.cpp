@@ -2,10 +2,12 @@
 
 int main ()
 {
-    ClapTrap ClapTrap;
-    ClapTrap.attack("Bot");
-    ClapTrap.takeDamage(12);
-    ClapTrap.takeDamage(2);
-    ClapTrap.beRepaired(5);
-    ClapTrap.attack("Bot");
+    ClapTrap claptrap;
+    claptrap.attack("Bot");
+    ClapTrap newclaptrap("Dollyne");
+    newclaptrap.attack("Ralph");
+    newclaptrap.takeDamage(5);
+    claptrap.takeDamage(2);
+    newclaptrap.beRepaired(5);
+    claptrap.attack("Bot");
 }

@@ -1,5 +1,7 @@
 #include "ClapTrap.hpp"
 
+// Constructor and Destructor implementations
+
 ClapTrap::ClapTrap() : _name(""), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
     std::cout << "\033[31mConstructor has been called\033[0m" << std::endl;
@@ -33,6 +35,32 @@ ClapTrap::~ClapTrap()
 {
     std::cout << "\033[31mDestructor has been called\033[0m" << std::endl;
 }
+
+
+// Getters
+
+std::string ClapTrap::getName() const
+{
+    return _name;
+}
+unsigned int ClapTrap::getHitPoints() const
+{
+    return _HitPoints;
+}
+
+unsigned int ClapTrap::getEnergyPoints() const
+{
+    return _EnergyPoints;
+}
+
+unsigned int ClapTrap::getAttackDamage() const
+{
+    return _AttackDamage;
+}
+
+
+
+// Member function implementations
 
 void ClapTrap::attack(const std::string& target)
 {

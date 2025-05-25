@@ -13,9 +13,14 @@ class ScavTrap : public ClapTrap
         int _AttackDamage;
 
     public :
+        // Canonical Form
         ScavTrap();
         ScavTrap(std::string name);
+        ScavTrap(const ScavTrap& other);
+        ScavTrap& operator=(const ScavTrap& other);
         ~ScavTrap();
+
+        // Functions
         void attack(const std::string& target);
         void guardGate();
 };

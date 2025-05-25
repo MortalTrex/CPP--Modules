@@ -30,11 +30,18 @@ int main ()
     std::cout << "\033[34mEnergyPoints: \033[0m" << newclaptrap.getEnergyPoints() << std::endl;
     std::cout << "\033[34mAttackDamage: \033[0m" << newclaptrap.getAttackDamage() << std::endl;
 
-    //Verification of copy constructor
-    claptrap = newclaptrap;
+    //Verification of operator
     std::cout << std::endl << "\033[32mINFOS OF CLAPTRAP AFTER ASSIGNMENT\033[0m" << std::endl;
+    claptrap = newclaptrap;
     std::cout << "\033[34mHitPoints: \033[0m" << claptrap.getHitPoints() << std::endl;
     std::cout << "\033[34mEnergyPoints: \033[0m" << claptrap.getEnergyPoints() << std::endl;
     std::cout << "\033[34mAttackDamage: \033[0m" << claptrap.getAttackDamage() << std::endl;
+
+    // Verification of copy
+    std::cout << std::endl << "\033[32mINFOS OF NEW CLAPTRAP AFTER COPY\033[0m" << std::endl;
+    ClapTrap copyclaptrap(claptrap);
+    std::cout << "\033[34mHitPoints: \033[0m" << copyclaptrap.getHitPoints() << std::endl;
+    std::cout << "\033[34mEnergyPoints: \033[0m" << copyclaptrap.getEnergyPoints() << std::endl;
+    std::cout << "\033[34mAttackDamage: \033[0m" << copyclaptrap.getAttackDamage() << std::endl;
 
 }

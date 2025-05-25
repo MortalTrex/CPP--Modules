@@ -5,23 +5,22 @@
 FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "\033[31mFragTrap Constructor has been called\033[0m" << std::endl;
-	_HitPoints = 100;
-	_EnergyPoints = 100;
-	_AttackDamage = 30;
+	_hitPoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "\033[31mFragTrap Parameterized Constructor Called!\033[0m" << std::endl;
-	_HitPoints = 100;
-	_EnergyPoints = 100;
-	_AttackDamage = 30;
+	_hitPoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 }
 
-FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
+FragTrap::FragTrap(const FragTrap &other): ClapTrap(other)
 {
-	std::cout << "\033[31mFragTrap Copy constructor has been called\033[0m" << std::endl;
-	*this = other;
+	std::cout << "\033[31mFragTrap Copy Constructor has been called\033[0m" << std::endl;
 }
 
 FragTrap::~FragTrap()
@@ -34,22 +33,26 @@ FragTrap& FragTrap::operator=(const FragTrap& other)
 	std::cout << "\033[31mFragTrap Assignment Operator Called!\033[0m" << std::endl;
 	if (this != &other)
 	{
-		ClapTrap::operator=(other);
-		_HitPoints = other._HitPoints;
-		_EnergyPoints = other._EnergyPoints;
-		_AttackDamage = other._AttackDamage;
+		this->_name = other._name;
+		this->_hitPoints = other._hitPoints;
+		this->_energyPoints = other._energyPoints;
+		this->_attackDamage = other._attackDamage;
 	}
 	return *this;
 }
 
 // Functions
 
-
 void FragTrap::highFivesGuys()
 {
-	if (_HitPoints == 0)
+	if (_hitPoints == 0)
 	{
 		std::cout << "FragTrap is not alive" << std::endl;
+		return;
+	}
+	if (_energyPoints == 0)
+	{
+		std::cout << "FragTrap doesn't have energy" << std::endl;
 		return;
 	}
 	if (_name.empty())
@@ -60,4 +63,5 @@ void FragTrap::highFivesGuys()
 	{
 		std::cout << "FragTrap " << _name << " requests a high five!" << std::endl;
 	}
+	_energyPoints--;
 }

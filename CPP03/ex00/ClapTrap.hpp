@@ -7,9 +7,9 @@ class ClapTrap
 {
     private :
         std::string _name;
-        int _HitPoints;
-        int _EnergyPoints;
-        int _AttackDamage;
+        int _hitPoints;
+        int _energyPoints;
+        int _attackDamage;
 
     public :
         // Canonical Form

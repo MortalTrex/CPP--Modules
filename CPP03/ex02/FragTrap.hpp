@@ -6,12 +6,6 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		std::string _name;
-		int _HitPoints;
-		int _EnergyPoints;
-		int _AttackDamage;
-
 	public:
 		// Canonical Form
 		FragTrap();

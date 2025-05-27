@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 19:41:11 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/05/23 20:42:53 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/05/27 14:57:43 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool verif_phonenumber(std::string str)
 {
     for (int i = 0; str[i]; i++)
     {
-        if (str[i] < '0' || str[i] > '9')
+        if (!std::isdigit(str[i]))
         {
             std::cout << "\033[1;31mInvalid phone number\033[0m" << std::endl;
             return (false);

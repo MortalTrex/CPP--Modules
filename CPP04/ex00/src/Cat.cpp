@@ -1,4 +1,4 @@
-#include "inc/Cat.hpp"
+#include "../inc/Cat.hpp"
 
 Cat::Cat() {
     std::cout << "Cat default constructor called" << std::endl;

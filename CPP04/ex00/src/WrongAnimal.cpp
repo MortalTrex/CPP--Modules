@@ -24,3 +24,13 @@ std::string WrongAnimal::getType() const
 {
     return (_type);
 }
+
+void WrongAnimal::makeSound() const
+{
+    if (_type == "WrongAnimal")
+        std::cout << "No sound" << std::endl;
+    else if (_type == "Dog")
+        std::cout << "Woof!" << std::endl;
+    else if (_type == "Cat")
+        std::cout << "Meow!" << std::endl;
+}

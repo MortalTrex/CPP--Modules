@@ -1,6 +1,8 @@
 #include "../inc/Cat.hpp"
 
-Cat::Cat() {
+Cat::Cat() 
+{
+    _type = "Cat";
     std::cout << "Cat default constructor called" << std::endl;
 }
 

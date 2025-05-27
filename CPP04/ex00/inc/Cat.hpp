@@ -1,5 +1,5 @@
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef CAT_H
+#define CAT_H
 
 #include "Animal.hpp"
 #include <iostream>
@@ -12,8 +12,6 @@ class Cat : public Animal
         Cat(const Cat &other);
         Cat &operator=(const Cat &other);
         virtual ~Cat();
-
-        //virtual void makeSound() const;
 };
 
 #endif

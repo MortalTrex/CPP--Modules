@@ -1,5 +1,5 @@
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+#ifndef WRONGANIMAL_H
+#define WRONGANIMAL_H
 
 #include <iostream>
 #include <string>
@@ -12,11 +12,11 @@ class WrongAnimal
         WrongAnimal();
         WrongAnimal(const WrongAnimal &other);
         WrongAnimal &operator=(const WrongAnimal &other);
-        virtual ~WrongAnimal();
+        ~WrongAnimal();
 
         std::string getType() const;
 
-        //void makeSound() const;
+        void makeSound() const;
 };
 
 #endif

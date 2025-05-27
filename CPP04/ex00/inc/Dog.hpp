@@ -1,5 +1,5 @@
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef DOG_H
+#define DOG_H
 
 #include "Animal.hpp"
 #include <iostream>
@@ -12,8 +12,6 @@ class Dog : public Animal
         Dog(const Dog &other);
         Dog &operator=(const Dog &other);
         virtual ~Dog();
-
-        //virtual void makeSound() const;
 };
 
 #endif

@@ -27,10 +27,10 @@ std::string WrongAnimal::getType() const
 
 void WrongAnimal::makeSound() const
 {
-    if (_type == "WrongAnimal")
-        std::cout << "No sound" << std::endl;
-    else if (_type == "Dog")
+    if (_type == "Dog")
         std::cout << "Woof!" << std::endl;
     else if (_type == "Cat")
         std::cout << "Meow!" << std::endl;
+    else
+        std::cout << "No sound" << std::endl;
 }

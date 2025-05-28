@@ -31,6 +31,6 @@ void Animal::makeSound() const
         std::cout << "Woof !" << std::endl;
     else if (_type == "Cat")
         std::cout << "Meow !" << std::endl;
-    else if (_type == "Animal")
+    else
         std::cout << "No Sound" << std::endl;
 }

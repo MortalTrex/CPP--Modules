@@ -10,11 +10,18 @@ int main()
     //MAIN TEST
     const Animal* meta = new Animal();
     const Animal* j = new Dog();
-    const Animal* j2 = new Dog();
     const Animal* i = new Cat();
 
-    
-    j = j2;
+    //TEST COPY CONSTRUCTOR AND ASSIGNMENT OPERATOR
+    Dog* dog = new Dog();
+    Dog* dog1 = new Dog();
+    *dog = *dog1;
+    Dog* dog2 = new Dog(*dog1);
+    delete dog1;
+    delete dog;
+    delete dog2;
+
+
     std::cout << "------------------" << std::endl;
     std::cout << "\033[31mDog Type:\033[0m " << std::endl;
     std::cout << j->getType() << " " << std::endl;

@@ -12,7 +12,9 @@ WrongDog::WrongDog(const WrongDog &other) : WrongAnimal(other) {
 
 WrongDog &WrongDog::operator=(const WrongDog &other) {
     std::cout << "WrongDog assignment operator called" << std::endl;
-    WrongAnimal::operator=(other);
+    if (this != &other) {
+        _type = other._type;
+    }
     return *this;
 }
 

@@ -21,7 +21,6 @@ int main()
     delete dog;
     delete dog2;
 
-
     std::cout << "------------------" << std::endl;
     std::cout << "\033[31mDog Type:\033[0m " << std::endl;
     std::cout << j->getType() << " " << std::endl;

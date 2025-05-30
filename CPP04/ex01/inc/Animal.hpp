@@ -16,7 +16,7 @@ class Animal
 
         std::string getType() const;
 
-        virtual	void    makeSound( void ) const = 0;
+        virtual	void  makeSound() const;
 };
 
 #endif

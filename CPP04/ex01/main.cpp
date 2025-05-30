@@ -2,50 +2,56 @@
 #include "./inc/Cat.hpp"
 #include "./inc/Dog.hpp"
 
+#define ARRAY_SIZE 4
+
 int main(void)
 {
-	Animal* meta[4];
-
-    Dog*	A = new Dog();
-
-    Cat*	B = new Cat();
-    Cat* 	C = new Cat();
-    Cat*	D = new Cat();
-
-
-    //TEST DEEP COPY
-
-    *C = *D;
-    C->setIdea(99, "I HAVE IDEA");
-    D->setIdea(99, "I HAVE IDEA FOR DEEP COPY");
-
-    std::cout << C->getIdea(99) << std::endl;
-    std::cout << D->getIdea(99) << std::endl;
-
-    delete C;
-    delete D;
-    
-    Cat *other = new Cat(*B);
-    other->makeSound();
-    //std::cout << other->getIdea(100) << std::endl;
-    delete other;
-    
-    for (int i = 0; i < 4; i++)
+    // MAIN TEST
+	Animal *meta[ARRAY_SIZE];
+    for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        if ( i % 2 == 0)
+        if (i % 2)
             meta[i] = new Dog();
         else
             meta[i] = new Cat();
     }
-    //B->setIdea(100, "I HAVE IDEA");
-    B->setIdea(99, "I HAVE IDEA");
 
-    //std::cout << " idea test: " << B->getIdea(100) << std::endl;
-    std::cout << " idea test: " << B->getIdea(99) << std::endl;
-    std::cout << " idea test: " << B->getIdea(98) << std::endl;
+	for (int i = 0; i < ARRAY_SIZE; i++)
+	{
+		std::cout << "Animal type: " << meta[i]->getType() << std::endl;
+		meta[i]->makeSound();
+	}
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < ARRAY_SIZE; i++)
         delete meta[i];
-    delete A;
-    delete B;
+    
+    std::cout << "--------------------------------" << std::endl;
+
+    //TEST DEEP COPY
+    std::cout << std::endl << "TEST DEEP COPY" << std::endl << std::endl;
+    Cat*	cat1 = new Cat();
+    Cat* 	cat2 = new Cat();
+    
+    *cat1 = *cat2;
+    cat1->setIdea(99, "I think I will control humans");
+    cat2->setIdea(99, "I need food");
+    cat2->setIdea(130, "I need food");
+    std::cout << cat1->getIdea(99) << std::endl;
+    std::cout << cat2->getIdea(99) << std::endl;
+    
+    delete cat2;
+    
+    std::cout << "--------------------------------" << std::endl;
+
+    // TEST ASSIGNMENT
+    std::cout << std::endl << "TEST ASSIGNMENT" << std::endl << std::endl;
+    Cat *cat3 = new Cat(*cat1);
+
+    cat3->makeSound();
+    cat1->setIdea(99, "I think I will control humans");
+    std::cout << cat3->getIdea(100) << std::endl;
+    std::cout << cat3->getIdea(65) << std::endl;
+
+    delete cat1;
+    delete cat3;
 }

@@ -26,7 +26,7 @@ Brain &Brain::operator=(const Brain &other)
 
 Brain::~Brain()
 {
-	std::cout << "\033[32mBrain destructor called\033[0m" << std::endl;
+	std::cout << "\033[31mBrain destructor called\033[0m" << std::endl;
 }
 
 void Brain::setIdea(int i, const std::string &newIdea)

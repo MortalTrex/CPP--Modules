@@ -17,7 +17,7 @@ Animal &Animal::operator=(const Animal &other) {
 }
 
 Animal::~Animal() {
-    std::cout << "\033[32mAnimal destructor called\033[0m" << std::endl;
+    std::cout << "\033[31mAnimal destructor called\033[0m" << std::endl;
 }
 
 std::string Animal::getType() const
@@ -27,10 +27,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-    if (_type == "Dog")
-        std::cout << "Woof !" << std::endl;
-    else if (_type == "Cat")
-        std::cout << "Meow !" << std::endl;
-    else
-        std::cout << "No Sound" << std::endl;
+    std::cout << "No Sound" << std::endl;
 }

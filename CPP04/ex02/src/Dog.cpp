@@ -27,15 +27,29 @@ Dog& Dog::operator=(const Dog &other)
 Dog::~Dog()
 {
     delete _brain;
-    std::cout << "\033[32mDog destructor called\033[0m" << std::endl;
+    std::cout << "\033[31mDog destructor called\033[0m" << std::endl;
+}
+
+void Dog::makeSound() const
+{
+    std::cout << "Woof !" << std::endl;
 }
 
 void Dog::setIdea(int i, const std::string& newIdea) 
 {
+    if (i < 0 || i > 99)
+    {
+        std::cout << "Index is outside the range" << std::endl;
+        return ;
+    }
     this->_brain->setIdea(i, newIdea);
 }
 
 std::string Dog::getIdea(int i) const
 {
+    if (i < 0 || i > 99)
+        return "Index is outside the range";
+    if (this->_brain->getIdea(i).empty())
+        return "No idea";
     return this->_brain->getIdea(i);
 }

@@ -27,16 +27,29 @@ Cat &Cat::operator=(const Cat &other)
 Cat::~Cat()
 {
     delete _brain;
-    std::cout << "\033[32mCat destructor called\033[0m" << std::endl;
+    std::cout << "\033[31mCat destructor called\033[0m" << std::endl;
 }
 
+void Cat::makeSound() const
+{
+    std::cout << "Meow !" << std::endl;
+}
 
 void Cat::setIdea(int i, const std::string& newIdea) 
 {
+    if (i < 0 || i > 99)
+    {
+        std::cout << "Index is outside the range" << std::endl;
+        return ;
+    }
     this->_brain->setIdea(i, newIdea);
 }
 
 std::string Cat::getIdea(int i) const
 {
+    if (i < 0 || i > 99)
+        return "Index is outside the range";
+    if (this->_brain->getIdea(i).empty())
+        return "No idea";
     return this->_brain->getIdea(i);
 }

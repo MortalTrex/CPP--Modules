@@ -17,6 +17,8 @@ class Dog : public Animal
         Dog &operator=(const Dog &other);
         virtual ~Dog();
 
+        virtual void makeSound() const;
+
         // Brain
         std::string getIdea(int i) const;
         void setIdea(int i, const std::string& newIdea);

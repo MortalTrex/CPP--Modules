@@ -2,10 +2,11 @@ NAME = AMateria
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	src/Animal.cpp\
-	src/Cat.cpp\
-	src/Dog.cpp\
-	src/Brain.cpp\
+	src/AMateria.cpp\
+	src/Character.cpp\
+	src/MateriaSource.cpp\
+	src/Ice.cpp\
+	src/Cure.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -6,10 +6,12 @@
 
 class MateriaSource : public IMateriaSource
 {
+	private:
+		std::string array[4];
 	public:
 		MateriaSource();
-		MateriaSource(std::string const & src);
-		MateriaSource &operator=(const AMateria &other);
+		MateriaSource(const MateriaSource &src);
+		MateriaSource &operator=(const MateriaSource &other);
 		virtual ~MateriaSource();
 
 		void learnMateria(AMateria*);

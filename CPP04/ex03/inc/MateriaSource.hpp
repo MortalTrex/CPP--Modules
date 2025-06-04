@@ -7,7 +7,7 @@
 class MateriaSource : public IMateriaSource
 {
 	private:
-		std::string array[4];
+		AMateria* _materia[4];
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &src);

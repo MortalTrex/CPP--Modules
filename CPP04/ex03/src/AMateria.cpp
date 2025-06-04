@@ -26,10 +26,14 @@ std::string const & AMateria::getType() const
 {
 	return (this->_type);
 }
-
 void AMateria::use(ICharacter& target)
 {
-	if (this->_type = "Ice")
-
-
+	if (this->_type == "Ice")
+		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	else if (this->_type == "Cure")
+		std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+	else
+		std::cout << "* uses unknown materia on " << target.getName() << " *" << std::endl;
+}	std::cout << "* uses unknown materia on " << target.getName() << " *" << std::endl;
 }
+class ICharacter;

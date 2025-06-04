@@ -2,6 +2,10 @@
 
 MateriaSource::MateriaSource()
 {
+	for (int i = 0 ; i < 4 ; i++)
+	{
+		this->_materia[i] = NULL;
+	}
 
 }
 

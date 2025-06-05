@@ -1,9 +1,6 @@
 #include "../inc/AMateria.hpp"
 
-AMateria::AMateria()
-{
-
-}
+AMateria::AMateria() {}
 
 AMateria::AMateria(std::string const &type) : _type(type)
 {
@@ -41,4 +38,3 @@ void AMateria::use(ICharacter& target)
 	else
 		std::cout << "* uses unknown materia on " << target.getName() << " *" << std::endl;
 }
-

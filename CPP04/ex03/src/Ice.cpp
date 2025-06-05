@@ -1,8 +1,7 @@
 #include "../inc/Ice.hpp"
 
 Ice::Ice() : AMateria("Ice")
-{
-	
+{	
 }
 
 Ice::Ice(std::string const &src) : AMateria(src)

@@ -20,16 +20,26 @@ Character &Character::operator=(const Character &other)
 {
 	if (this != &other)
 	{
-		this->_name = other._name;
+		_name = other._name;
+		for (int i = 0; i < 4; i++)
+		{
+			delete _inventory[i];
+			if (other._inventory[i])
+				_inventory[i] = other._inventory[i]->clone();
+			else
+				_inventory[i] = NULL;
+		}
 	}
 	return *this;
 }
+
 
 Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		delete _inventory[i];
+		if (_inventory[i])
+			delete _inventory[i];
 	}
 }
 
@@ -40,34 +50,47 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-	for (int i = 0 ; i < 4 ; i++)
+	if (m)
 	{
-		if (!_inventory[i])
+		for (int i = 0 ; i < 4 ; i++)
 		{
-			_inventory[i] = m;
-			std::cout << i;
-			return;
+			if (!_inventory[i])
+			{
+				_inventory[i] = m;
+				std::cout << _inventory[i] << std::endl;
+				std::cout << "Materia equipped" <<  std::endl;
+				return;
+			}
 		}
 	}
-	std::cout << "Materia equipped" <<  std::endl;
 }
 
 void Character::unequip(int idx)
 {
-	std::cout << idx << std::endl;
+	if (idx < 0 || idx > 3)
+	{
+		std::cout << "Index is outside the range" << std::endl;
+		return ;
+	}
+	if (!_inventory[idx])
+	{
+		std::cout << "doesn't have a Materia on " << idx << " index."  << std::endl;
+		return ;
+	}
+	std::cout << _inventory[idx] << std::endl;
 	std::cout << "Materia " << idx << " unequipped" << std::endl;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (!_inventory[idx])
-	{
-		std::cout << target.getName() << " doesn't have a Materia on " << idx << " index."  << std::endl;
-		return ;
-	}
 	if (idx < 0 || idx > 3)
 	{
 		std::cout << "Index is outside the range" << std::endl;
+		return ;
+	}
+	if (!_inventory[idx])
+	{
+		std::cout << target.getName() << " doesn't have a Materia on " << idx << " index."  << std::endl;
 		return ;
 	}
 	_inventory[idx]->use(target);

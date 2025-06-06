@@ -77,7 +77,8 @@ void Character::unequip(int idx)
 		std::cout << "doesn't have a Materia on " << idx << " index."  << std::endl;
 		return ;
 	}
-	std::cout << _inventory[idx] << std::endl;
+	std::cout << "  " << std::endl;
+	//_inventory[idx] = NULL;
 	std::cout << "Materia " << idx << " unequipped" << std::endl;
 }
 

@@ -24,3 +24,8 @@ WrongDog::~WrongDog()
 {
     std::cout << "WrongDog destructor called" << std::endl;
 }
+
+void WrongDog::makeSound() const
+{
+    std::cout << "Woof!" << std::endl;
+}

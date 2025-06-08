@@ -7,9 +7,10 @@ Dog::Dog()
     std::cout << "\033[32mDog default constructor called\033[0m" << std::endl;
 }
 
-Dog::Dog(const Dog &other) : Animal(other)
+Dog::Dog(const Dog &other) : AAnimal(other)
 {
-    _brain = new Brain();
+    this->_brain = new Brain(*other._brain);
+    this->_type = other._type;
     std::cout << "\033[32mDog copy constructor called\033[0m" << std::endl;
 }
 

@@ -2,17 +2,17 @@
 
 WrongAnimal::WrongAnimal() : _type("WrongAnimal")
 {
-    std::cout << "WrongAnimal default constructor called" << std::endl;
+    std::cout << "\033[31mWrongAnimal default constructor called\033[0m" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other) : _type(other._type)
 {
-    std::cout << "WrongAnimal copy constructor called" << std::endl;
+    std::cout << "\033[31mWrongAnimal copy constructor called\033[0m" << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 {
-    std::cout << "WrongAnimal assignment operator called" << std::endl;
+    std::cout << "\033[31mWrongAnimal assignment operator called\033[0m" << std::endl;
     if (this != &other) {
         this->_type = other._type;
     }
@@ -21,8 +21,9 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 
 WrongAnimal::~WrongAnimal()
 {
-    std::cout << "WrongAnimal destructor called" << std::endl;
+    std::cout << "\033[31mWrongAnimal destructor called\033[0m" << std::endl;
 }
+
 
 std::string WrongAnimal::getType() const
 {
@@ -31,5 +32,5 @@ std::string WrongAnimal::getType() const
 
 void WrongAnimal::makeSound() const
 {
-    std::cout << "No Sound" << std::endl;
+    std::cout << "No sound" << std::endl;
 }

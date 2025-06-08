@@ -1,6 +1,6 @@
 NAME = Materia
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -O0
+FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
 	src/AMateria.cpp\
 	src/Character.cpp\

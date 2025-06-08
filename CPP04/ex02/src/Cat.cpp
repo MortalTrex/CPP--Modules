@@ -7,9 +7,10 @@ Cat::Cat()
     std::cout << "\033[32mCat default constructor called\033[0m" << std::endl;
 }
 
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(const Cat &other) : AAnimal(other)
 {
-    _brain = new Brain();
+    this->_brain = new Brain(*other._brain);
+    this->_type = other._type;
     std::cout << "\033[32mCat copy constructor called\033[0m" << std::endl;
 }
 
@@ -18,7 +19,7 @@ Cat &Cat::operator=(const Cat &other)
     std::cout << "\033[32mCat assignment operator called\033[0m" << std::endl;
     if (this != &other)
     {
-        _type = other._type;
+        this->_type = other._type;
         *this->_brain = *other._brain;
     }
     return *this;

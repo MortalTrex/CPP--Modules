@@ -16,6 +16,17 @@ Character::Character(std::string const &name) : _name(name)
 	}
 }
 
+Character::Character(const Character& src)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (src._inventory[i])
+			this->_inventory[i] = src._inventory[i]->clone();
+		else
+			this->_inventory[i] = NULL;
+	}
+}
+
 Character &Character::operator=(const Character &other)
 {
 	if (this != &other)
@@ -62,7 +73,6 @@ void Character::equip(AMateria* m)
 			if (!_inventory[i])
 			{
 				_inventory[i] = m;
-				std::cout << "Materia " << m->getType() << " equipped on index " << i << std::endl;
 				return;
 			}
 		}
@@ -83,7 +93,7 @@ void Character::unequip(int idx)
 	}
 	if (!_inventory[idx])
 	{
-		std::cout << "\033[31m" << this->getName() << " doesn't have a Materia on " << idx << " index.\033[0m" << std::endl;
+		std::cout << "\033[31m" << this->getName() << " can't unequip because he doesn't have a Materia on " << idx << " index.\033[0m" << std::endl;
 		return ;
 	}
 	_trashinventory.push_back(_inventory[idx]);
@@ -100,7 +110,7 @@ void Character::use(int idx, ICharacter& target)
 	}
 	if (!_inventory[idx])
 	{
-		std::cout << "\033[31m" << this->getName() << " doesn't have a Materia on " << idx << " index.\033[0m" << std::endl;
+		std::cout << "\033[31m" << this->getName() << " can't use because he doesn't have a Materia on " << idx << " index.\033[0m" << std::endl;
 		return ;
 	}
 	_inventory[idx]->use(target);

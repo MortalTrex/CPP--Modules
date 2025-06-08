@@ -5,7 +5,7 @@ Cure::Cure() : AMateria("Cure")
 
 }
 
-Cure::Cure(std::string const &src) : AMateria(src)
+Cure::Cure(const Cure &src) : AMateria(src)
 {
 
 }

@@ -2,10 +2,13 @@ NAME = Animal
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	src/Animal.cpp\
+	src/AAnimal.cpp\
 	src/Cat.cpp\
 	src/Dog.cpp\
 	src/Brain.cpp\
+	src/WrongAnimal.cpp\
+	src/WrongCat.cpp\
+	src/WrongDog.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

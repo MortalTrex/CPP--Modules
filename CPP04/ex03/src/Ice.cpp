@@ -4,9 +4,8 @@ Ice::Ice() : AMateria("Ice")
 {	
 }
 
-Ice::Ice(std::string const &src) : AMateria(src)
+Ice::Ice(const Ice &src) : AMateria(src)
 {
-
 }
 
 Ice &Ice::operator=(const Ice &other)

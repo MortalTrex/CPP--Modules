@@ -12,15 +12,7 @@ int main()
     const Animal* j = new Dog();
     const Animal* i = new Cat();
 
-    //TEST COPY CONSTRUCTOR AND ASSIGNMENT OPERATOR
-    Dog* dog = new Dog();
-    Dog* dog1 = new Dog();
-    *dog = *dog1;
-    Dog* dog2 = new Dog(*dog1);
-    delete dog1;
-    delete dog;
-    delete dog2;
-
+    
     std::cout << "------------------" << std::endl;
     std::cout << "\033[31mDog Type:\033[0m " << std::endl;
     std::cout << j->getType() << " " << std::endl;
@@ -33,12 +25,12 @@ int main()
     std::cout << "\033[31mAnimal sound:\033[0m " << std::endl;
     meta->makeSound();
     std::cout << "-------------------" << std::endl;
-    delete(meta);
-    delete(j);
     delete(i);
-
+    delete(j);
+    delete(meta);
+    
     std::cout << std::endl;
-
+    
     //TEST WRONG ANIMAL
     std::cout << "------------------" << std::endl;
     std::cout << "WRONG ANIMAL TEST" << std::endl;
@@ -57,8 +49,19 @@ int main()
     wrongDog->makeSound();
     std::cout << "\033[31mWrongAnimal sound:\033[0m " << std::endl;
     wrongMeta->makeSound();
-    std::cout << "-------------------" << std::endl;
     delete(wrongMeta);
     delete(wrongDog);
     delete(wrongCat);
+    std::cout << "-------------------" << std::endl;
+
+    //TEST COPY CONSTRUCTOR AND ASSIGNMENT OPERATOR
+    Dog* dog = new Dog();
+    Dog* dog1 = new Dog();
+    *dog = *dog1;
+    dog->makeSound();
+    Dog* dog2 = new Dog(*dog1);
+    dog2->makeSound();
+    delete dog1;
+    delete dog;
+    delete dog2;
 }

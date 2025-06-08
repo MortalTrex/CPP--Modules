@@ -1,18 +1,18 @@
-#ifndef ANIMAL_H
-#define ANIMAL_H
+#ifndef AANIMAL_H
+#define AANIMAL_H
 
 #include <iostream>
 #include <string>
 
-class Animal
+class AAnimal
 {
     protected:
         std::string _type;
     public:
-        Animal();
-        Animal(const Animal &other);
-        Animal &operator=(const Animal &other);
-        virtual ~Animal();
+        AAnimal();
+        AAnimal(const AAnimal &other);
+        AAnimal &operator=(const AAnimal &other);
+        virtual ~AAnimal();
 
         std::string getType() const;
 

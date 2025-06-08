@@ -10,7 +10,13 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource &src)
 {
-	*this = src; 
+	for (int i = 0 ; i < 4 ; i++)
+	{
+		if (src._materia[i])
+			this->_materia[i] = src._materia[i]->clone();
+		else
+			this->_materia[i] = NULL;
+	}
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)

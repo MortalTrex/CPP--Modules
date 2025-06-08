@@ -1,25 +1,23 @@
-#ifndef DOG_H
-#define DOG_H
+#ifndef WRONGCAT_H
+#define WRONGCAT_H
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 #include "Brain.hpp"
 #include <iostream>
 #include <string>
 
-class Dog : public Animal
+class WrongCat : public WrongAnimal
 {
     private:
         Brain *_brain;
-
     public:
-        Dog();
-        Dog(const Dog &other);
-        Dog &operator=(const Dog &other);
-        ~Dog();
+        WrongCat();
+        WrongCat(const WrongCat &other);
+        WrongCat &operator=(const WrongCat &other);
+        ~WrongCat();
 
         void makeSound() const;
 
-        // Brain
         std::string getIdea(int i) const;
         void setIdea(int i, const std::string& newIdea);
 };

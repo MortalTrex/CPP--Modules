@@ -8,6 +8,8 @@ int main()
 {
 	//MANDATORY
 
+	std::cout << "\033[34mMandatory tests\033[0m" << std::endl;
+
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
@@ -31,6 +33,8 @@ int main()
 	std::cout << "--------------------------------------" << std::endl;
 
 	//ADDITIONNAL TESTS
+
+	std::cout << "\033[34mAdditional tests\033[0m" << std::endl;
 
 	ICharacter* hero = new Character("hero");
 	ICharacter*	enemy = new Character("enemy");
@@ -67,7 +71,11 @@ int main()
 	delete enemy;
 	
 	std::cout << "--------------------------------------" << std::endl;
+
 	//test assignement Character (deep copy)
+
+	std::cout << "\033[34mTests for Character\033[0m" << std::endl;
+
 	Character hero1("hero1");
 	Character hero2("hero2");
 
@@ -77,6 +85,12 @@ int main()
 
 	hero1.use(0, hero2);
 	hero2.use(0, hero1);
+
+	Character hero3(hero1);
+
+	hero3.equip(src->createMateria("Ice"));
+	hero3.use(0, hero2);
+	hero3.unequip(0);
 
 	std::cout << "\033[34mCopying hero1 to hero2\033[0m" << std::endl;
 	hero1 = hero2;
@@ -91,6 +105,7 @@ int main()
 
 	hero1.unequip(0);
 	hero1.use(0, hero2);
+	hero2.unequip(0);
 	hero2.unequip(0);
 	hero2.use(0, hero1);
 

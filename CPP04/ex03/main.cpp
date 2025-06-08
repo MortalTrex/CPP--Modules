@@ -6,30 +6,34 @@
 
 int main()
 {
+	//MANDATORY
+
 	IMateriaSource* src = new MateriaSource();
-	// src->learnMateria(new Ice());
-	// src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-	// AMateria* test = new Ice();
-	// ICharacter* me = new Character("me");
+	ICharacter* me = new Character("me");
 
-	// AMateria* tmp;
-	// tmp = src->createMateria("Ice");
-	// me->equip(tmp);
-	// tmp = src->createMateria("Cure");
-	// me->equip(tmp);
-	// ICharacter* bob = new Character("bob");
-	// me->use(0, *bob);
-	// me->use(1, *bob);
-	// delete me;
-	// delete bob;
-	// delete test;
+	AMateria* tmp;
+	tmp = src->createMateria("Ice");
+	me->equip(tmp);
+	tmp = src->createMateria("Cure");
+	me->equip(tmp);
 
-	// std::cout << "--------------------------------------" << std::endl;
-	//MAIN_TESTEUR
+	ICharacter* bob = new Character("bob");
 
-	ICharacter*	character = new Character("character");
-	ICharacter* character2 = new Character("character2");
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	delete me;
+	delete bob;
+
+	std::cout << "--------------------------------------" << std::endl;
+
+	//ADDITIONNAL TESTS
+
+	ICharacter* hero = new Character("hero");
+	ICharacter*	enemy = new Character("enemy");
 
 	AMateria* a = src->createMateria("Ice");
 	AMateria* b = src->createMateria("Ice");
@@ -39,52 +43,64 @@ int main()
 	AMateria* f = src->createMateria("Cure");
 
 	// test fully inventory
-	character2->equip(a);
-	character2->use(0, *character);
-	character2->equip(b);
-	character2->use(1, *character);
-	character2->equip(c);
-	character2->use(2, *character);
-	character2->equip(d);
-	character2->use(3, *character);
+	hero->equip(a);
+	hero->use(0, *enemy);
+	hero->equip(b);
+	hero->use(1, *enemy);
+	hero->equip(c);
+	hero->use(2, *enemy);
+	hero->equip(d);
+	hero->use(3, *enemy);
 
-	character2->equip(e);
-	character2->use(4, *character);
+	// test incorrect equip
+	hero->equip(e);
+	hero->use(4, *enemy);
 
-	// test equip and unequip
-	std::cout << "ICI" << std::endl;
-	character2->unequip(3);
-	character2->unequip(1);
-	character2->use(3, *character);
-	character2->equip(f);
-	character2->use(3, *character);
+	//test unequip
+	hero->unequip(3);
+	hero->unequip(1);
+	hero->use(3, *enemy);
+	hero->equip(f);
+	hero->use(1, *enemy);
 
-	delete character2;
-	delete character;
+	delete hero;
+	delete enemy;
 	
-	// test assignement Charactere (deep copy)
-	Character louis("louis");
-	Character vincent("vincent");
-
-	louis.equip(src->createMateria("Ice"));
-	vincent.equip(src->createMateria("Cure"));
-
-	louis.use(0, vincent);
-	vincent.use(0, louis);
-	louis = vincent;
-
-	louis.use(0, vincent);
-	vincent.use(0, louis);
-
-	louis.use(1, vincent); //<- Slot number 1 is empty
-
 	std::cout << "--------------------------------------" << std::endl;
+	//test assignement Character (deep copy)
+	Character hero1("hero1");
+	Character hero2("hero2");
 
+	hero1.equip(src->createMateria("Ice"));
+	hero2.equip(src->createMateria("Cure"));
+	hero2.equip(src->createMateria("Cure"));
+
+	hero1.use(0, hero2);
+	hero2.use(0, hero1);
+
+	std::cout << "\033[34mCopying hero1 to hero2\033[0m" << std::endl;
+	hero1 = hero2;
+	
+	std::cout << "\033[34mHero 2 health hero 1\033[0m" << std::endl;
+	hero2.use(0, hero1);
+	
+	std::cout << "\033[34mTests for hero1\033[0m" << std::endl;
+	hero1.use(0, hero2);
+	hero1.use(2, hero2);
+	hero1.use(1, hero2);
+
+	hero1.unequip(0);
+	hero1.use(0, hero2);
+	hero2.unequip(0);
+	hero2.use(0, hero1);
+
+
+	delete src;
+	
 	// test instance AMateria
 	
 	// AMateria *no_instance = new AMateria();
 	// ICharacter no_instance2;
 
-	delete src;
 	return 0;
 }

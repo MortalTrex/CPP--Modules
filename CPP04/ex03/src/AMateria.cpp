@@ -31,10 +31,15 @@ void AMateria::setType(std::string const &type)
 
 void AMateria::use(ICharacter& target)
 {
+	if (target.getName().empty())
+	{
+		std::cerr << "\033[31mUnknown target\033[0m" << std::endl;
+		return;
+	}
 	if (this->_type == "Ice")
 		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 	else if (this->_type == "Cure")
 		std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 	else
-		std::cout << "* uses unknown materia on " << target.getName() << " *" << std::endl;
+		std::cout << "\033[31m* uses unknown materia on " << target.getName() << " *\033[0m" << std::endl;
 }

@@ -28,6 +28,11 @@ Ice *Ice::clone() const
 
 void Ice::use(ICharacter& target)
 {
+	if (target.getName().empty())
+	{
+		std::cerr << "\033[31mUnknown target\033[0m" << std::endl;
+		return;
+	}
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 

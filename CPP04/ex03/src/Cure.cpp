@@ -29,6 +29,11 @@ Cure *Cure::clone() const
 
 void Cure::use(ICharacter& target)
 {
+	if (target.getName().empty())
+	{
+		std::cerr << "\033[31mUnknown target\033[0m" << std::endl;
+		return;
+	}
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }
 

@@ -2,15 +2,58 @@
 
 int main()
 {
-    Bureaucrat first = Bureaucrat("first", 1);
-    Bureaucrat last = Bureaucrat("last", 150);
+    // Test wrong class instantiation
+    std::cout << "\033[34mTesting wrong class instantiation:\033[0m" << std::endl;
+    try
+    {
+        Bureaucrat error = Bureaucrat("error", 153);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 
-    //Test limit Increment
-    std::cout << first.getName() << std::endl << first.getGrade() << std::endl;
-    first.incrementGrade();
-    std::cout << first.getGrade() << std::endl << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "\033[34mTesting too much increment or decrement:\033[0m" << std::endl;
 
-    //Test limit Decrement
-    last.decrementGrade();
-    std::cout << last.getName() << std::endl << last.getGrade() << std::endl;
+    // Test too much increment or decrement
+    try
+    {
+        Bureaucrat first = Bureaucrat("first", 1);
+        Bureaucrat last = Bureaucrat("last", 150);
+        
+        //Test limit Increment
+        std::cout << first << std::endl;
+        first.incrementGrade();
+        std::cout << first << std::endl;
+    
+        //Test limit Decrement
+        last.decrementGrade();
+        std::cout << last << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "\033[34mTesting normal class instantiation:\033[0m" << std::endl;
+    // Test normal class instantiation
+    try
+    {
+        Bureaucrat bureaucrat = Bureaucrat("Ralph", 50);
+        std::cout << bureaucrat << std::endl;
+
+        // Test increment and decrement
+        bureaucrat.incrementGrade();
+        std::cout << "After increment: " << bureaucrat << std::endl;
+        
+        bureaucrat.decrementGrade();
+        std::cout << "After decrement: " << bureaucrat << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    
 }

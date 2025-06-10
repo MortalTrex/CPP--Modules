@@ -13,6 +13,21 @@ _name(name), _isSigned(isSigned), _gradeSign(sign), _gradeExec(exec)
 
 }
 
+Form::Form(const Form &other) : _name(other._name), _isSigned(other._isSigned), 
+_gradeSign(other._gradeSign), _gradeExec(other._gradeExec)
+{
+
+}
+
+Form &Form::operator=(const Form &other)
+{
+	if (this != &other)
+	{
+		this->_isSigned = other._isSigned;
+	}
+	return *this;
+}
+
 Form::~Form()
 {
 
@@ -22,9 +37,9 @@ Form::~Form()
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
-    os << "Form : " << form.getName() << ", grade required to sign it: " << form.getGradeSign() 
-	<< ", grade required to execute it: " << form.getGradeSign() << " Status : " << form.getIsSigned() << std::endl;
-    return os;
+	os << "Form : " << form.getName() << ", grade required to sign it: " << form.getGradeSign() 
+	<< ", grade required to execute it: " << form.getGradeExec() << " Status : " << form.getIsSigned() << std::endl;
+	return os;
 }
 
 // Getters

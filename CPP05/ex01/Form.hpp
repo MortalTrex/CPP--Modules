@@ -18,6 +18,8 @@ class Form
 	public:
 		Form();
 		Form(std::string name, bool isSigned, size_t sign, size_t exec);
+		Form(const Form &other);
+		Form &operator=(const Form &other);
 		~Form();
 
 		// Getters

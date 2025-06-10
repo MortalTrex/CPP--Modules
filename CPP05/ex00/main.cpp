@@ -56,4 +56,16 @@ int main()
         std::cerr << e.what() << std::endl;
     }
     
+    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "\033[34mTest deepcopy:\033[0m" << std::endl;
+
+    Bureaucrat number1("Test", 45);
+    Bureaucrat number2(number1);
+
+    number1.incrementGrade();
+    std::cout << "Before" << std::endl;
+    std::cout << number2 << std::endl << number1 << std::endl;
+    std::cout << "After" << std::endl;
+    number2 = number1;
+    std::cout << number2 << std::endl << number1 << std::endl;
 }

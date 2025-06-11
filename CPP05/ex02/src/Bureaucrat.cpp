@@ -54,11 +54,6 @@ std::string const Bureaucrat::getName() const
     return(this->_name);
 }
 
-size_t Bureaucrat::getGrade() const
-{
-    return(this->_grade);
-}
-
 // Methods
 
 void Bureaucrat::incrementGrade()
@@ -84,7 +79,7 @@ void Bureaucrat::signForm(Form &form)
     }
     catch (std::exception &e)
     {
-        std::cout << this->getName() << " couldn't signed " << form.getName() <<
+        std::cerr << this->getName() << " couldn't signed " << form.getName() <<
         " because " << e.what() << std::endl;
     }
 }

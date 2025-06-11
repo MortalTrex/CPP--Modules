@@ -10,7 +10,10 @@ Form::Form() : _name("Default"), _isSigned(false), _gradeSign(50), _gradeExec(50
 Form::Form(std::string name, bool isSigned, size_t sign, size_t exec) : 
 _name(name), _isSigned(isSigned), _gradeSign(sign), _gradeExec(exec)
 {
-
+	if (sign <= 0 || exec <= 0)
+		throw Form::GradeTooHighException();
+	else if (sign >= 150 || exec >= 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form &other) : _name(other._name), _isSigned(other._isSigned), 
@@ -37,8 +40,8 @@ Form::~Form()
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
-	os << "Form : " << form.getName() << ", grade required to sign it: " << form.getGradeSign() 
-	<< ", grade required to execute it: " << form.getGradeExec() << " Status : " << form.getIsSigned() << std::endl;
+	os << "Form : " << form.getName() << " ||| Grade required to sign it: " << form.getGradeSign() 
+	<< " ||| Grade required to execute it: " << form.getGradeExec() << " ||| Status : " << form.getIsSigned() << std::endl;
 	return os;
 }
 

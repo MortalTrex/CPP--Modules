@@ -16,3 +16,16 @@ std::string const ShrubberyCreationForm::getTarget() const
 {
 	return this->_target;
 }
+
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
+{
+	try
+	{
+		/* code */
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+}

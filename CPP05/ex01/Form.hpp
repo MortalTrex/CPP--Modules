@@ -23,7 +23,7 @@ class Form
 		~Form();
 
 		// Getters
-		std::string const getName() const;
+		std::string conex01/Bureaucrat.cppt getName() const;
 		bool getIsSigned() const;
 		size_t getGradeSign() const;
 		size_t getGradeExec() const;
@@ -37,7 +37,7 @@ class Form
 		public:
 			virtual const char* what() const throw()
 			{
-				return "Grade too high!";
+				return "Grade too high";
 			}
 	};
 
@@ -46,11 +46,10 @@ class Form
 		public:
 			virtual const char* what() const throw()
 			{
-				return "Grade too low!";
+				return "Grade too low";
 			}
 	};
-
 };
-std::ostream &operator<<(std::ostream os, const Form &form);
+std::ostream &operator<<(std::ostream &os, const Form &form);
 
 #endif

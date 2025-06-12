@@ -11,9 +11,9 @@ int main()
     try
     {
         Bureaucrat bureaucrat("bureaucrat", 140);
-        AForm *form = new ShrubberyCreationForm("Shruberry");
+        ShrubberyCreationForm form("home");
         std::cout << form << std::endl;
-        
+
         bureaucrat.signForm(form);
         bureaucrat.executeForm(form);
     }

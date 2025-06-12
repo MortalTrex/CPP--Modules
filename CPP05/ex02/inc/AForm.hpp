@@ -49,6 +49,24 @@ class AForm
 			}
 	};
 
+	class FormNotSignedException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return "Form not signed";
+			}
+	};
+
+	class FileOpenException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return "Failed to open file";
+			}
+	};
+
 };
 std::ostream &operator<<(std::ostream &os, const AForm &form);
 

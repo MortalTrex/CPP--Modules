@@ -1,8 +1,8 @@
-#include "../inc/Bureaucrat.hpp"
-#include "../inc/AForm.hpp"
-#include "../inc/PresidentialPardonForm.hpp"
-#include "../inc/RobotomyRequestForm.hpp"
-#include "../inc/ShrubberyCreationForm.hpp"
+#include "./inc/Bureaucrat.hpp"
+#include "./inc/AForm.hpp"
+#include "./inc/PresidentialPardonForm.hpp"
+#include "./inc/RobotomyRequestForm.hpp"
+#include "./inc/ShrubberyCreationForm.hpp"
 
 int main()
 {
@@ -11,11 +11,15 @@ int main()
     try
     {
         Bureaucrat bureaucrat("bureaucrat", 140);
-        ShrubberyCreationForm form("home");
-        std::cout << form << std::endl;
 
-        bureaucrat.signForm(form);
-        bureaucrat.executeForm(form);
+        //AForm *pardonForm = new PresidentialPardonForm("presidential");
+	    AForm *shrubberyForm = new ShrubberyCreationForm("shrubbery");
+	    //AForm *robotomyForm = new RobotomyRequestForm("robotomy");
+
+        std::cout << shrubberyForm << std::endl;
+
+        bureaucrat.signForm(*shrubberyForm);
+        bureaucrat.executeForm(*shrubberyForm);
     }
     catch (std::exception &e)
     {

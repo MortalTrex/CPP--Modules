@@ -24,13 +24,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	if (executor.getGrade() > 137)
 		throw AForm::GradeTooLowException();
 
-	std::ofstream ofs(this->_target + "_shrubbery");
+	std::ofstream ofs("test");
 	if (!ofs.is_open())
 		throw AForm::FileOpenException();
 
-	std::ofstream ofs(this->_target + "_shrubbery");
-	if (!ofs)
-		throw std::runtime_error("Failed to open output file");
 
 	ofs << "               ,@@@@@@@,\n";
 	ofs << "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n";

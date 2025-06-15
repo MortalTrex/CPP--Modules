@@ -23,7 +23,7 @@ class Form
 		~Form();
 
 		// Getters
-		std::string conex01/Bureaucrat.cppt getName() const;
+		std::string const getName() const;
 		bool getIsSigned() const;
 		size_t getGradeSign() const;
 		size_t getGradeExec() const;

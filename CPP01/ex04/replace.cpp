@@ -6,7 +6,7 @@
 /*   By: rbalazs <rbalazs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 20:23:53 by rbalazs           #+#    #+#             */
-/*   Updated: 2025/05/03 21:04:49 by rbalazs          ###   ########.fr       */
+/*   Updated: 2025/06/13 18:57:01 by rbalazs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void ft_replace(std::string filename, std::string s1, std::string s2)
 	size_t 			pos;
 	std::string 	line;
 	std::ifstream	file(filename.c_str());
+	if (s1.empty() || s2.empty())
+	{
+		std::cerr << "Error: empty word " << std::endl;
+		return;
+	}
 	if (!file.is_open())
 	{
 		std::cerr << "Error: cannot open " << filename << std::endl;

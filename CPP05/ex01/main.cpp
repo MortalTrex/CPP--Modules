@@ -8,7 +8,7 @@ int main()
     try
     {
         Bureaucrat first = Bureaucrat("bureaucrat", 34);
-        Form form = Form("important", false, 35, 35);
+        Form form = Form("important", false, 150, 35);
         std::cout << form << std::endl; 
         first.signForm(form);
         std::cout << form << std::endl;

@@ -12,7 +12,7 @@ _name(name), _isSigned(isSigned), _gradeSign(sign), _gradeExec(exec)
 {
 	if (sign <= 0 || exec <= 0)
 		throw AForm::GradeTooHighException();
-	else if (sign >= 150 || exec >= 150)
+	else if (sign > 150 || exec > 150)
 		throw AForm::GradeTooLowException();
 }
 

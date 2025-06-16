@@ -15,7 +15,7 @@ class Intern
         AForm* createShrubberyForm(const std::string &target);
         AForm* createRobotomyForm(const std::string &target);
         AForm* createPresidentialForm(const std::string &target);
-    
+        
     public:
         Intern();
         Intern(Intern const &src);

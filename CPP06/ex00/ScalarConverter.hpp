@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <iomanip>
+#include <cmath>
 
 class ScalarConverter {
     public:

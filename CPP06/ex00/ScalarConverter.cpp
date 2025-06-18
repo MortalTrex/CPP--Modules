@@ -39,7 +39,13 @@ void ScalarConverter::convert(const std::string &literal)
     else if (!std::isnan(result))
         std::cout << "int : " << static_cast<int>(result) << std::endl;
 
-    std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(result) << "f" << std::endl;
+    if (std::isnan(result))
+        std::cout << "float : " << "impossible" << std::endl;
+    else if (!std::isnan(result))
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(result) << "f" << std::endl;
 
-    std::cout << "double: " << result << std::endl;
+    if (std::isnan(result))
+        std::cout << "double : " << "impossible" << std::endl;
+    else if (!std::isnan(result))
+        std::cout << "double: " << result << std::endl;
 }

@@ -2,6 +2,10 @@
 
 int main(int argc, char **argv)
 {
+    // Check if scalar converter is not instantiated
+    // ScalarConverter converter;
+    // ScalarConverter(converter);
+
     if (argc != 2)
     {
         std::cerr << "Bad arguments" << std::endl;

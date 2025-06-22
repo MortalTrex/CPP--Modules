@@ -46,7 +46,14 @@ void displayInt(double result)
 
 void displayFloat(double result)
 {
-    if (std::isnan(result) || result < static_cast<double>(FLOAT_MIN) || result > static_cast<double>(FLOAT_MAX))
+    if (std::isinf(result))
+    {
+        if (result < 0)
+            std::cout << "float: -inff" << std::endl;
+        if (result > 0)
+            std::cout << "float: inff" << std::endl;
+    }
+    else if (result < static_cast<double>(FLOAT_MIN) || result > static_cast<double>(FLOAT_MAX))
         std::cout << "float: impossible" << std::endl;
     else
         std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(result) << "f" << std::endl;
@@ -54,7 +61,14 @@ void displayFloat(double result)
 
 void displayDouble(double result)
 {
-    if (std::isnan(result) || result < static_cast<double>(DOUBLE_MIN) || result > static_cast<double>(DOUBLE_MAX))
+   if (std::isinf(result))
+    {
+        if (result < 0)
+            std::cout << "double: -inff" << std::endl;
+        if (result > 0)
+            std::cout << "double: inff" << std::endl;
+    }
+    else if (result < static_cast<double>(DOUBLE_MIN) || result > static_cast<double>(DOUBLE_MAX))
         std::cout << "double: impossible" << std::endl;
     else
         std::cout << "double: " << std::fixed << std::setprecision(1) << result << std::endl;
@@ -76,7 +90,6 @@ void ScalarConverter::convert(const std::string &literal)
     
     char *ptr;
     double result;
-
     if (literal == "nan" || literal == "nanf")
         result = std::numeric_limits<double>::quiet_NaN();
     else if (literal == "inf" || literal == "inff" || literal == "+inf" || literal == "+inff")
@@ -85,7 +98,6 @@ void ScalarConverter::convert(const std::string &literal)
         result = -std::numeric_limits<double>::infinity();
     else
     {
-        std::cout << "ICII" << std::endl;
         result = strtod(literal.c_str(), &ptr);
         if (ptr == literal.c_str())
         {
@@ -96,6 +108,7 @@ void ScalarConverter::convert(const std::string &literal)
             return;
         }
     }
+
     displayChar(result);
     displayInt(result);
     displayFloat(result);

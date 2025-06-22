@@ -1,8 +1,9 @@
-NAME = convert
+NAME = base
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	ScalarConverter.cpp
+	src/Base.cpp\
+	src/A.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -3,7 +3,9 @@ NAME = base
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
 	src/Base.cpp\
-	src/A.cpp
+	src/A.cpp\
+	src/B.cpp\
+	src/C.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

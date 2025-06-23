@@ -5,9 +5,10 @@
 #include "Base.hpp"
 
 
-class A : Base
+class A : public Base
 {
-
+    public:
+        
 };
 
 #endif

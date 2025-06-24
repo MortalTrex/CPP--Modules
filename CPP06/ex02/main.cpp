@@ -10,10 +10,11 @@ Base * generate(void)
     rdmValue = rand() % 3 + 1;
     if (rdmValue == 1)
         return new A();
-    if (rdmValue == 2)
+    else if (rdmValue == 2)
         return new B();
-    if (rdmValue == 3)
+    else if (rdmValue == 3)
         return new C();
+    return new A();
 }
 
 void identify(Base* p)

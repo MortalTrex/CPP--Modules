@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <stdexcept>
 
 class Base
 {

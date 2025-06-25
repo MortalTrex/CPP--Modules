@@ -30,5 +30,6 @@ void displayChar(double result);
 void displayInt(double result);
 void displayFloat(double result);
 void displayDouble(double result);
+bool isWrongInput(std::string &literal);
 
 #endif

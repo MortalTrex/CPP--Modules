@@ -74,6 +74,26 @@ void displayDouble(double result)
         std::cout << "double: " << std::fixed << std::setprecision(1) << result << std::endl;
 }
 
+bool isWrongInput(const std::string &literal)
+{
+    int countDot = 0;
+    int countF = 0;
+    for (size_t i = 0 ; i < literal.length() ; i++)
+    {
+        if (!std::isprint(literal[i]))
+            return true;
+        else if (literal[i] == '.')
+            countDot++;
+        else if (literal[i] != 'f' && !std::isdigit(literal[i]))
+            return true;
+        else if (literal[i] == 'f')
+            countF++;
+    }
+    if (countDot > 1 || countF > 1)
+        return true;
+    return false;
+}
+
 
 // Mandatory conversion method //
 
@@ -87,7 +107,16 @@ void ScalarConverter::convert(const std::string &literal)
         std::cout << "double: " << static_cast<double>(literal[0]) << std::endl;
         return;
     }
-    
+
+    if (isWrongInput(literal))
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+        return;
+    }
+
     char *ptr;
     double result;
     if (literal == "nan" || literal == "nanf")

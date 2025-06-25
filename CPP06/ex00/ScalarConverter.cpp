@@ -68,7 +68,7 @@ void displayDouble(double result)
         if (result > 0)
             std::cout << "double: inff" << std::endl;
     }
-    else if (result < static_cast<double>(DOUBLE_MIN) || result > static_cast<double>(DOUBLE_MAX))
+    else if (result < DOUBLE_MIN || result > DOUBLE_MAX)
         std::cout << "double: impossible" << std::endl;
     else
         std::cout << "double: " << std::fixed << std::setprecision(1) << result << std::endl;
@@ -78,7 +78,10 @@ bool isWrongInput(const std::string &literal)
 {
     int countDot = 0;
     int countF = 0;
-    for (size_t i = 0 ; i < literal.length() ; i++)
+    size_t i = 0;
+    if (literal[0] == '-')
+        i = 1;
+    for ( ; i < literal.length() ; i++)
     {
         if (!std::isprint(literal[i]))
             return true;
@@ -108,7 +111,9 @@ void ScalarConverter::convert(const std::string &literal)
         return;
     }
 
-    if (isWrongInput(literal))
+    if (isWrongInput(literal) && literal != "nan" && literal != "nanf" &&
+        literal != "inf" && literal != "inff" && literal != "+inf" && literal != "+inff" &&
+        literal != "-inf" && literal != "-inff")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;

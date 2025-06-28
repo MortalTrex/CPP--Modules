@@ -3,19 +3,25 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include "Array.tpp"
 
 template<typename T>
-class Array
+class Array 
 {
+    private:
+        T* _array;
+        size_t _size;
+
     public:
         Array();
         Array(unsigned int n);
-        Array(const Array &copy);
-        ~Array();
+        Array(const Array &src);
         Array &operator=(const Array &copy);
-        T &operator[]( unsigned int index );
-        
+        ~Array();
+
+        T &operator[](size_t index);
+        const T &operator[](size_t index) const;
+        size_t size() const;
 };
 
+#include "Array.tpp"
 #endif

@@ -2,7 +2,6 @@ NAME = array
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	Array.tpp
 
 OBJ = $(SRC:.cpp=.o)
 

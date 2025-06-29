@@ -2,12 +2,19 @@
 #define ITER_HPP
 #include <iostream>
 
-template <typename T, typename LEN, typename F>
-void iter(T *array, LEN length, F func)
+void func (int value)
 {
-    for (LEN i = 0 ; array[i] && i < length ; i++)
+    value++;
+    std::cout << "value = " << value << std::endl;
+}
+
+template <typename T, typename Len, typename F>
+void iter(T *array, Len length, F func)
+{
+    for (Len i = 0 ; i < length ; i++)
     {
         func(array[i]);
     }
 }
+
 #endif

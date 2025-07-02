@@ -5,11 +5,8 @@
 
 int main()
 {
-    std::vector<int> vec;
-    vec.push_back(10);
-    vec.push_back(20);
-    vec.push_back(30);
-    vec.push_back(40);
+    int nb[3] = { 4, 3, 5 };
+    std::vector<int> vec( nb, nb + 3 );
 
     std::list<int> lst;
     lst.push_back(5);
@@ -17,10 +14,10 @@ int main()
     lst.push_back(25);
     lst.push_back(35);
 
+
     try {
-        std::cout << "Trying to find 100 in vector..." << std::endl;
-        easyfind(vec, 100);
-       // easyfind(lst, 100);
+        easyfind(vec, 4);
+        easyfind(lst, 15);
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }

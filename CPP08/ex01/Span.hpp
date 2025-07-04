@@ -4,11 +4,13 @@
 #include <iostream>
 #include <stdexcept>
 #include <vector>
+#include <algorithm>
 
 class Span
 {
     private:
         int _integers;
+        int _count;
         std::vector<int> _container;
 
     public:

@@ -23,15 +23,32 @@ Span::~Span(){}
 
 void Span::addNumber(int nb)
 {
+    if (_count == _integers)
+    {
+        std::cout << "Limit of numbers reached" << std::endl;
+        return;
+    }
     _container.push_back(nb);
+    _count++;
 }
 
 unsigned int Span::longestSpan()
 {
-    return 45;
+    int min = *std::min_element(_container.begin(), _container.end());
+    int max = *std::max_element(_container.begin(), _container.end());
+    return max - min;
 }
 
 unsigned int Span::shortestSpan()
 {
-    return 42;
+    std::vector<int> sorted = _container;
+    std::sort(sorted.begin(), sorted.end());
+    unsigned int span = longestSpan();
+    for (size_t i = 0 ; i < sorted.size() ; i++)
+    {
+        std::cout << span << std::endl;
+        if (sorted[i + 1] - sorted[i] < static_cast<int>(span))
+            span = sorted[i + 1] - sorted[i];
+    }
+    return span;
 }

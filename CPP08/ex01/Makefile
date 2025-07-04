@@ -1,4 +1,4 @@
-NAME = whatever
+NAME = span
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\

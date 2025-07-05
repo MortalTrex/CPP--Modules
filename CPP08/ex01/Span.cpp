@@ -41,12 +41,13 @@ unsigned int Span::longestSpan()
 
 unsigned int Span::shortestSpan()
 {
+    if (_container.size() < 2)
+        throw std::logic_error("Not enough value");
     std::vector<int> sorted = _container;
     std::sort(sorted.begin(), sorted.end());
     unsigned int span = longestSpan();
-    for (size_t i = 0 ; i < sorted.size() ; i++)
+    for (size_t i = 0 ; i < sorted.size() - 1; i++)
     {
-        std::cout << span << std::endl;
         if (sorted[i + 1] - sorted[i] < static_cast<int>(span))
             span = sorted[i + 1] - sorted[i];
     }

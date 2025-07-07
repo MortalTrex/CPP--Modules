@@ -5,6 +5,12 @@
 
 class BitcoinExchange {
     private:
+        ifstream
+    public:
+        BitcoinExchange();
+        BitcoinExchange(std::string filename);
+        ~BitcoinExchange();
+        void execute();
 
 };
 

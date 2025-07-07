@@ -9,8 +9,7 @@
 class Span
 {
     private:
-        int _integers;
-        int _count;
+        unsigned int _maxSize;
         std::vector<int> _container;
 
     public:
@@ -21,6 +20,7 @@ class Span
         ~Span();
 
         void addNumber(int nb);
+        void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         unsigned int shortestSpan();
         unsigned int longestSpan();
 };

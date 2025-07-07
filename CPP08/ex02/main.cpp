@@ -32,6 +32,7 @@ int main()
     std::stack<int> s(mstack);
     //it = s.begin();
 
+    std::cout << "----------------" << std::endl;
     // Check reverse
     MutantStack<int> s2(mstack);
     MutantStack<int>::reverse_iterator rit = s2.rbegin();
@@ -45,6 +46,7 @@ int main()
 
     s2 = mstack;
 
+    std::cout << "----------------" << std::endl;
     // Test with string
     MutantStack<std::string> mstackStr;
     mstackStr.push("Hello");
@@ -55,5 +57,33 @@ int main()
 
     std::cout << *cit << std::endl;
 
+    // Remplace with std::list to compare result
+
+    std::cout << "----------------" << std::endl;
+
+    std::list<int> list;
+
+    list.push_back(5);
+    list.push_back(17);
+
+    std::cout << "top : " << list.back() << std::endl;
+    std::cout << "size before pop : " << list.size() << std::endl;
+    list.pop_back();
+    std::cout << "size after pop : " << list.size() << std::endl;
+    list.push_back(3);
+    list.push_back(5);
+    list.push_back(737);
+    list.push_back(0);
+
+    std::list<int>::iterator lit = list.begin();
+    std::list<int>::iterator lite = list.end();
+
+    ++lit;
+    --lit;
+    while (lit != lite)
+    {
+        std::cout << *lit << std::endl;
+        ++lit;
+    }
     return 0;
 }

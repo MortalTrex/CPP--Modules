@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 
     try {
         RPN rpn(argv[1]);
-        std::cout << rpn.calculate() << std::endl;
+        rpn.calculate();
     } catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;

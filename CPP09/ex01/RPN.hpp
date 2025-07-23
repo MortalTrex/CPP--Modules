@@ -2,10 +2,16 @@
 #define RPN_HPP
 
 #include <iostream>
+#include <stack>
+#include <string>
+#include <stdexcept>
+#include <sstream>
+#include <cstdlib>
 
-class RPN {
+class RPN
+{
     private:
-        std::string expression;
+        std::string         _expression;
     public:
         RPN();
         RPN(std::string expression);
@@ -13,7 +19,7 @@ class RPN {
         RPN &operator=(const RPN &cpy);
         ~RPN();
 
-        double calculate() const;
+        void calculate();
 };
 
 #endif

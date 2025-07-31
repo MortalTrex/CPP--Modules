@@ -14,7 +14,7 @@
 class PmergeMe
 {
     private:
-        std::vector<std::pair<int, int>> _pairs;
+        std::vector<std::pair <int, int> > _pairs;
         std::vector<int> _mainChain;
         std::vector<int> _pend;
     public:

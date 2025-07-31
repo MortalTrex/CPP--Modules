@@ -77,71 +77,6 @@ std::vector<int> generateJacobsthalOrder(int size)
 }
 
 
-// void PmergeMe::mergeSort(std::vector<int> &nb)  
-// {  
-//     if (nb.size() == 1)
-//         return;
-//     std::vector< std::_pairs<int, int> > _pairs;
-//     std::vector<int> _mainChain;
-//     std::vector<int> pend;
-//     int lastNb = -1;
-
-//     // -----FIRST SORT : FORMER DES PAIRES
-//     for (size_t i = 0; i + 1 < nb.size(); i += 2)
-//     {
-//         if (nb[i] <= nb[i + 1])
-//             _pairs.push_back(std::make_pair(nb[i], nb[i + 1]));
-//         if (nb[i] > nb[i + 1])
-//             _pairs.push_back(std::make_pair(nb[i + 1], nb[i]));
-//     }
-//     if (nb.size() % 2 != 0)
-//         lastNb = nb[nb.size() - 1];
-
-//     sortPairsBySecond(_pairs);
-//     // print _pairs
-//     std::cout << "PAIRS : ";
-//     for (size_t i = 0 ; i < _pairs.size() ; i++)
-//         std::cout << "(" << _pairs[i].first << ", " << _pairs[i].second << ") ";
-//     std::cout << std::endl;
-
-//     // -----SECOND SORT : _mainChain AND PEND
-//     for (size_t i = 0 ; i < _pairs.size() ; i++)
-//     {
-//         _mainChain.push_back(_pairs[i].second);
-//         pend.push_back(_pairs[i].first);
-//     }
-//     if (lastNb != -1)
-//         pend.push_back(lastNb);
-
-//     // print main and pend
-//     std::cout << "Main chain : ";
-//     for (size_t i = 0 ; i < _mainChain.size() ; i++)
-//         std::cout << _mainChain[i] << " ";
-//     std::cout << std::endl;
-
-//     std::cout << "Pend : ";
-//     for (size_t i = 0 ; i < pend.size() ; i++)
-//         std::cout << pend[i] << " ";
-//     std::cout << std::endl;
-
-//     // --------SUITE JACOB
-//     std::vector<int> insertOrder = generateJacobsthalOrder(pend.size());
-//     std::cout << "Order Jacobsthal : ";
-//     for (size_t i = 0; i < insertOrder.size() ; i++)
-//         std::cout << insertOrder[i] << " ";
-//     std::cout << std::endl;
-
-
-//     for (size_t i = 0; i < insertOrder.size(); i++)
-//     {
-//         int val = pend[insertOrder[i]];
-
-//         std::vector<int>::iterator pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), val);
-//         _mainChain.insert(pos, val);
-//     }
-//     nb = _mainChain;
-// }
-
 void PmergeMe::mergeSort(std::vector<int> &nb)  
 {  
     if (nb.size() == 1)
@@ -153,11 +88,13 @@ void PmergeMe::mergeSort(std::vector<int> &nb)
     {
         if (nb[i] <= nb[i + 1])
             _pairs.push_back(std::make_pair(nb[i], nb[i + 1]));
-        else if (nb[i] > nb[i + 1])
+        if (nb[i] > nb[i + 1])
             _pairs.push_back(std::make_pair(nb[i + 1], nb[i]));
     }
     if (nb.size() % 2 != 0)
         lastNb = nb[nb.size() - 1];
+
+    sortPairsBySecond(_pairs);
 
     // print _pairs
     std::cout << "PAIRS : ";
@@ -166,39 +103,38 @@ void PmergeMe::mergeSort(std::vector<int> &nb)
     std::cout << std::endl;
 
     // -----SECOND SORT : _mainChain AND PEND
-    // for (size_t i = 0 ; i < _pairs.size() ; i++)
-    // {
-    //     _mainChain.push_back(_pairs[i].second);
-    //     pend.push_back(_pairs[i].first);
-    // }
-    // if (lastNb != -1)
-    //     pend.push_back(lastNb);
+    for (size_t i = 0 ; i < _pairs.size() ; i++)
+    {
+        _mainChain.push_back(_pairs[i].second);
+        _pend.push_back(_pairs[i].first);
+    }
+    if (lastNb != -1)
+        _pend.push_back(lastNb);
 
-    // // print main and pend
-    // std::cout << "Main chain : ";
-    // for (size_t i = 0 ; i < _mainChain.size() ; i++)
-    //     std::cout << _mainChain[i] << " ";
-    // std::cout << std::endl;
+    // print main and pend
+    std::cout << "Main chain : ";
+    for (size_t i = 0 ; i < _mainChain.size() ; i++)
+        std::cout << _mainChain[i] << " ";
+    std::cout << std::endl;
 
-    // std::cout << "Pend : ";
-    // for (size_t i = 0 ; i < pend.size() ; i++)
-    //     std::cout << pend[i] << " ";
-    // std::cout << std::endl;
+    std::cout << "Pend : ";
+    for (size_t i = 0 ; i < _pend.size() ; i++)
+        std::cout << _pend[i] << " ";
+    std::cout << std::endl;
 
-    // // --------SUITE JACOB
-    // std::vector<int> insertOrder = generateJacobsthalOrder(pend.size());
-    // std::cout << "Order Jacobsthal : ";
-    // for (size_t i = 0; i < insertOrder.size() ; i++)
-    //     std::cout << insertOrder[i] << " ";
-    // std::cout << std::endl;
+    // --------SUITE JACOB
+    std::vector<int> insertOrder = generateJacobsthalOrder(_pend.size());
+    std::cout << "Order Jacobsthal : ";
+    for (size_t i = 0; i < insertOrder.size() ; i++)
+        std::cout << insertOrder[i] << " ";
+    std::cout << std::endl;
 
+    for (size_t i = 0; i < insertOrder.size(); i++)
+    {
+        int val = _pend[insertOrder[i]];
 
-    // for (size_t i = 0; i < insertOrder.size(); i++)
-    // {
-    //     int val = pend[insertOrder[i]];
-
-    //     std::vector<int>::iterator pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), val);
-    //     _mainChain.insert(pos, val);
-    // }
+        std::vector<int>::iterator pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), val);
+        _mainChain.insert(pos, val);
+    }
     nb = _mainChain;
 }

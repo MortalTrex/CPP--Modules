@@ -29,7 +29,7 @@ RPN::~RPN() {}
 // ------ Member function ------
 void RPN::calculate()
 {
-    std::stack<int> stack;
+    std::stack<double> stack;
     std::istringstream ssExpression(_expression);
     std::string token;
     int a;
@@ -39,7 +39,10 @@ void RPN::calculate()
     {
         if ((token.size() == 1 && isdigit(token[0])) || token == "10")
         {
-            stack.push(atoi(token.c_str()));
+            char *check;
+            stack.push(strtod(token.c_str(), &check));
+            if (check);
+                throw std::invalid_argument("");
         }
         else if (token == "+" || token == "-" || token == "*" || token == "/")
         {

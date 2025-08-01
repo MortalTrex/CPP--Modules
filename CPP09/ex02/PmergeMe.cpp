@@ -11,35 +11,15 @@ PmergeMe::PmergeMe(const PmergeMe &src)
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &src)
 {
-    if (this != &src) {
-        _pairs = src._pairs;
-        _mainChain = src._mainChain;
-        _pend = src._pend;
-    }
+    // if (this != &src) {
+    // }
+    (void)src;
     return *this;
 }
 
 PmergeMe::~PmergeMe(){}
 
 // ------- Methods ---------
-
-void sortPairsBySecond(std::vector< std::pair<int, int> >& pairs)
-{
-    for (size_t i = 1; i < pairs.size(); ++i)
-    {
-        std::pair<int, int> key = pairs[i];
-        int j = i - 1;
-
-        // Décaler les paires dont .second est plus grand
-        while (j >= 0 && pairs[j].second > key.second)
-        {
-            pairs[j + 1] = pairs[j];
-            --j;
-        }
-
-        pairs[j + 1] = key;
-    }
-}
 
 std::vector<int> generateJacobsthalOrder(int size)
 {
@@ -77,64 +57,94 @@ std::vector<int> generateJacobsthalOrder(int size)
 }
 
 
-void PmergeMe::mergeSort(std::vector<int> &nb)  
+
+
+void PmergeMe::mergeSort(std::deque<unsigned int> &nb)  
 {  
-    if (nb.size() == 1)
+    if (nb.size() < 2)
         return;
-    int lastNb = -1;
+    std::deque<unsigned int> Main;
+    std::deque<unsigned int> Pend;
+    size_t  len = nb.size();
+    bool Odd = nb.size() % 2 != 0;
+    unsigned int tmp = 0;
+
+    if (Odd)
+    {
+        tmp = nb.back();
+        nb.pop_back();
+        len--;
+    }
 
     // -----FIRST SORT : FORMER DES PAIRES
-    for (size_t i = 0; i + 1 < nb.size(); i += 2)
+    for (size_t i = 0; i < len; i += 2)
     {
-        if (nb[i] <= nb[i + 1])
-            _pairs.push_back(std::make_pair(nb[i], nb[i + 1]));
-        if (nb[i] > nb[i + 1])
-            _pairs.push_back(std::make_pair(nb[i + 1], nb[i]));
+        unsigned int a = nb[i];
+        unsigned int b = nb[i + 1];
+        Main.push_back(std::max(a, b));
+        Pend.push_back(std::min(a, b));
     }
-    if (nb.size() % 2 != 0)
-        lastNb = nb[nb.size() - 1];
 
-    sortPairsBySecond(_pairs);
+    mergeSort(Main); // recursiviter
 
-    // print _pairs
-    std::cout << "PAIRS : ";
-    for (size_t i = 0 ; i < _pairs.size() ; i++)
-        std::cout << "(" << _pairs[i].first << ", " << _pairs[i].second << ") ";
-    std::cout << std::endl;
-
-    // -----SECOND SORT : _mainChain AND PEND
-    for (size_t i = 0 ; i < _pairs.size() ; i++)
-    {
-        _mainChain.push_back(_pairs[i].second);
-        _pend.push_back(_pairs[i].first);
-    }
-    if (lastNb != -1)
-        _pend.push_back(lastNb);
-
-    // print main and pend
-    std::cout << "Main chain : ";
-    for (size_t i = 0 ; i < _mainChain.size() ; i++)
-        std::cout << _mainChain[i] << " ";
-    std::cout << std::endl;
-
-    std::cout << "Pend : ";
-    for (size_t i = 0 ; i < _pend.size() ; i++)
-        std::cout << _pend[i] << " ";
-    std::cout << std::endl;
+    if (Odd)
+        Pend.push_back(tmp);
 
     // --------SUITE JACOB
-    std::vector<int> insertOrder = generateJacobsthalOrder(_pend.size());
-    std::cout << "Order Jacobsthal : ";
-    for (size_t i = 0; i < insertOrder.size() ; i++)
-        std::cout << insertOrder[i] << " ";
-    std::cout << std::endl;
+    std::vector<int> insertOrder = generateJacobsthalOrder(Pend.size());
 
-    for (size_t i = 0; i < insertOrder.size(); i++)
+
+    for (size_t i = 0; i < insertOrder.size(); ++i)
     {
-        int val = _pend[insertOrder[i]];
+        int val = Pend[insertOrder[i]];
 
-        std::vector<int>::iterator pos = std::lower_bound(_mainChain.begin(), _mainChain.end(), val);
-        _mainChain.insert(pos, val);
+        std::deque<unsigned int>::iterator pos = std::lower_bound(Main.begin(), Main.end(), val);
+        Main.insert(pos, val); // cest a cette etape la qu'il y aura une diference de complexiter algorithmique entre deque et vector
     }
-    nb = _mainChain;
+    nb = Main;
+}
+
+void PmergeMe::mergeSort(std::vector<unsigned int> &nb)  
+{  
+    if (nb.size() < 2)
+        return;
+    std::vector<unsigned int> Main;
+    std::vector<unsigned int> Pend;
+    size_t  len = nb.size();
+    bool Odd = nb.size() % 2 != 0;
+    unsigned int tmp = 0;
+
+    if (Odd)
+    {
+        tmp = nb.back();
+        nb.pop_back();
+        len--;
+    }
+
+    // -----FIRST SORT : FORMER DES PAIRES
+    for (size_t i = 0; i < len; i += 2)
+    {
+        unsigned int a = nb[i];
+        unsigned int b = nb[i + 1];
+        Main.push_back(std::max(a, b));
+        Pend.push_back(std::min(a, b));
+    }
+
+    mergeSort(Main); // recursiviter
+
+    if (Odd)
+        Pend.push_back(tmp);
+
+    // --------SUITE JACOB
+    std::vector<int> insertOrder = generateJacobsthalOrder(Pend.size());
+
+
+    for (size_t i = 0; i < insertOrder.size(); ++i)
+    {
+        int val = Pend[insertOrder[i]];
+
+        std::vector<unsigned int>::iterator pos = std::lower_bound(Main.begin(), Main.end(), val);
+        Main.insert(pos, val); // cest a cette etape la qu'il y aura une diference de complexiter algorithmique entre deque et vector
+    }
+    nb = Main;
 }

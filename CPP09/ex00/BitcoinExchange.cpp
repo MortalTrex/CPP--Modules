@@ -18,7 +18,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &cpy)
 BitcoinExchange::~BitcoinExchange(){}
 
 
-
 // ------------- UTILS ---------------- 
 
 std::vector<std::string> ft_split(const std::string& str, char delimiter)
@@ -109,8 +108,6 @@ float BitcoinExchange::getBtcValue()
     return 0.0f;
 }
 
-
-
 int daysFebruary(int year)
 {
     if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
@@ -170,7 +167,7 @@ bool BitcoinExchange::isDayValid()
     {
         if (intDay < 1 || intDay > 31)
             return false;
-    }   
+    }
     return true;
 }
 
@@ -186,7 +183,7 @@ bool checkBtcValue(const std::string &btcValue)
         std::cerr << "Error: not a valid number." << std::endl;
         return false;
     }
-    if (btcValue.size() > 10 || (btcValue.size() == 10 && btcValue > "1000000000"))
+    if (btcValue.size() > 10 || (btcValue.size() == 10 && btcValue > "2147483647"))
     {
         std::cerr << "Error: too large a number." << std::endl;
         return false;

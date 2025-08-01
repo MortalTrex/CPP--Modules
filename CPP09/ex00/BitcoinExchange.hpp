@@ -10,12 +10,11 @@
 #include <string>
 #include <map>
 
-
 class BitcoinExchange
 {
     private:
         std::string _filename;
-        std::vector <std::string> _date;
+        std::string _date;
         std::string _btcValue;
         std::map <std::string, float> _exchangeRates;
     

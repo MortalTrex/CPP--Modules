@@ -6,8 +6,8 @@ int main(int argc, char **argv)
     {
         if (argc < 2)
             throw std::invalid_argument("Any values");
-        std::vector<int> Vnb;
-        std::deque<int> Dnb;
+        std::vector<unsigned int> Vnb;
+        std::deque<unsigned int> Dnb;
 
         for (int i = 1; i < argc; i++)
         {
@@ -15,6 +15,7 @@ int main(int argc, char **argv)
                 if (!isdigit(argv[i][j]))
                     throw std::invalid_argument("Wrong input");
             Vnb.push_back(atoi(argv[i]));
+            Dnb.push_back(atoi(argv[i]));
         }
 
         // VECTOR
@@ -35,6 +36,7 @@ int main(int argc, char **argv)
         clock_t end = clock();
         std::cout << "\033[34mTime to process a range of " << Vnb.size() << " elements with std::vector : ";
         std::cout << static_cast<double>(end - start) * 1e6 / CLOCKS_PER_SEC << "us\033[0m" << std::endl;
+
         
         // Print result
         std::cout << "\033[32mAfter: ";
@@ -43,7 +45,16 @@ int main(int argc, char **argv)
             std::cout << Vnb[i] << " ";
         }
         std::cout << Vnb[Vnb.size() - 1] << "\033[0m" << std::endl;
+
+        start = clock();
+        merge.mergeSort(Dnb);
+        end = clock();
+        std::cout << "\033[34mTime to process a range of " << Vnb.size() << " elements with std::deque : ";
+        std::cout << static_cast<double>(end - start) * 1e6 / CLOCKS_PER_SEC << "us\033[0m" << std::endl;
+
     }
+
+
     catch(const std::exception& e)
     {
         std::cerr << "Error : " << e.what() << std::endl;

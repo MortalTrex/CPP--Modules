@@ -6,7 +6,6 @@
 #include <sstream>
 #include <exception>
 #include <cstdlib>
-#include <vector>
 #include <string>
 #include <map>
 
@@ -17,6 +16,7 @@ class BitcoinExchange
         std::string _date;
         std::string _btcValue;
         std::map <std::string, float> _exchangeRates;
+        std::map <std::string, int> _input;
     
     public:
         BitcoinExchange();
@@ -29,6 +29,7 @@ class BitcoinExchange
         bool isMonthValid();
         bool isDayValid();
         void createExchangeRatesMap();
+        void createInputMap();
         bool parseLine(std::string line);
         void execute();
         void readExchangeRatesMap();

@@ -51,8 +51,6 @@ void BitcoinExchange::createExchangeRatesMap()
             std::stringstream ss(valueStr);
             if (ss >> value)
                 _exchangeRates[date] = value;
-            else
-                std::cerr << "Warning: invalid float in line: " << line << std::endl;
         }
     }
     data.close();
@@ -65,13 +63,16 @@ bool checkFileFormat(const std::string filename, const std::string format)
     return false;
 }
 
+#include <cstdlib>
+#include <map>
+
 void BitcoinExchange::createInputMap()
 {
     std::string line;
     std::string::size_type  pipePos;
     std::string             valueStr;
     std::string             date;
-    int                   value;
+    std::string              value;
     std::ifstream input(_filename.c_str());
     if (!input.is_open())
         throw std::runtime_error("Error: could not open file " + _filename);
@@ -82,21 +83,26 @@ void BitcoinExchange::createInputMap()
     std::getline(input, line);
     while (std::getline(input, line))
     {
-        pipePos = line.find('|');
-        if (pipePos != std::string::npos)
-        {
-            date = line.substr(0, pipePos);
-            valueStr = line.substr(pipePos + 1);
+        date = ft_trim(line.substr(0, line.find("|")));
+        if (date == error)
+        continue;
+        value = ft_trim(line.substr(line.find("|") + 1));
 
-            std::stringstream ss(valueStr);
-            if (ss >> value)
-                _exchangeRates[date] = value;
-            else
-                std::cerr << "Warning: invalid float in line: " << line << std::endl;
-        }
+        
     }
     input.close();
 }
+
+
+// pipePos = line.find('|');
+//         if (pipePos != std::string::npos)
+//         {
+//             date = line.substr(0, pipePos);
+//             valueStr = line.substr(pipePos + 1);
+
+//             std::stringstream ss(valueStr);
+//             if (ss >> value)
+//                 _input[date] = value;
 
 void BitcoinExchange::readExchangeRatesMap()
 {
@@ -259,10 +265,10 @@ void BitcoinExchange::execute()
 {
     std::string line;
     
-    createInputMap();
     createExchangeRatesMap();
+    processline();
 
     std::map<std::string, int>::iterator it;
     for(it = _input.begin() ; it != _input.end() ; it++)
-        std::cout << "first:" << it->first << "second:" << it->second;
+        std::cout << "first:" << it->first << "second:" << it->second << std::endl;
 }

@@ -5,16 +5,14 @@
 #include <fstream>
 #include <sstream>
 #include <exception>
-#include <cstdlib>n
+#include <cstdlib>
 #include <string>
 #include <map>
 
 class BitcoinExchange
 {
     private:
-        std::string _filename;
-        std::string _date;
-        std::string _btcValue;
+        std::string _inputFile;
         std::map <std::string, float> _exchangeRates;
         std::map <std::string, int> _input;
     
@@ -25,15 +23,11 @@ class BitcoinExchange
         BitcoinExchange &operator=(const BitcoinExchange &cpy);
         ~BitcoinExchange();
         
-        bool isYearValid();
-        bool isMonthValid();
-        bool isDayValid();
         void createExchangeRatesMap();
         void createInputMap();
-        bool parseLine(std::string line);
-        void execute();
-        void readExchangeRatesMap();
         float getBtcValue();
+
+        void execute();
 };
 
 #endif

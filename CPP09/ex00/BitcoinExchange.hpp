@@ -7,7 +7,9 @@
 #include <exception>
 #include <cstdlib>
 #include <string>
+#include <algorithm> 
 #include <map>
+#include <iomanip>
 
 class BitcoinExchange
 {
@@ -23,7 +25,7 @@ class BitcoinExchange
         ~BitcoinExchange();
         
         void createExchangeRatesMap();
-        float getBtcValue();
+        void displayResult(const std::string &date, const std::string &value);
 
         void execute();
 };

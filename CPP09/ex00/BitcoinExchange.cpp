@@ -28,13 +28,31 @@ std::string ft_trim(const std::string& s)
     return s.substr(start, end - start + 1);
 }
 
-int daysFebruary(int year)
+bool daysFebruary(std::string year, std::string month, std::string day)
 {
-    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-        return 29;
-    return 28;
-}
+    int i_year = atoi(year.c_str());
+    int i_month = atoi(month.c_str());
+    int i_day = atoi(day.c_str());
 
+    if (i_month == 2)
+    {
+        if ((i_year % 4 == 0 && i_year % 100 != 0) || (i_year % 400 == 0))
+        {
+            if (i_day >= 1 && i_day <= 29)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            if (i_day >= 1 && i_day <= 28)
+                return true;
+            else
+                return false;
+        }
+    }
+    return true;
+}
 
 // ------------- PARSING ----------------
 
@@ -53,7 +71,7 @@ bool isYearValid(const std::string &date)
         return false;
     
     int year = atoi(date.c_str());
-    if (year < 2009 || year > 2023)
+    if (year < 2009 || year > 2026)
         return false;
     
     return true;
@@ -76,12 +94,7 @@ bool isDayValid(std::string &date)
         return false;
     int intDay = atoi(date.c_str());
 
-    if (date == "02")
-    {
-        if (intDay < 1 || intDay > daysFebruary(atoi(date.c_str())))
-            return false;
-    }
-    else if (date == "04" || date == "06" || date == "09" || date == "11")
+    if (date == "04" || date == "06" || date == "09" || date == "11")
     {
         if (intDay < 1 || intDay > 30)
             return false;
@@ -115,32 +128,22 @@ bool checkBtcValue(const std::string &btcValue)
 }
 
 
-float BitcoinExchange::getBtcValue()
+void BitcoinExchange::displayResult(const std::string &date, const std::string &value)
 {
-    std::string year = _date[0];
-    std::string month = _date[1];
-    std::string day = _date[2];
-    float btc;
-    bool found = false;
+    float f_value = std::atof(value.c_str());
 
-    for (std::map<std::string, float>::iterator it = _exchangeRates.begin(); it != _exchangeRates.end(); ++it)
+    std::map<std::string, float>::iterator it = this->_exchangeRates.lower_bound(date);
+
+    if (it->first != date)
     {
-        if (it->first.substr(0, 4) == year)
+        if (it == _exchangeRates.begin())
         {
-            if (it->first.substr(5, 2) == month)
-            {
-                if (it->first.substr(8, 2) >= day)
-                    found = true;
-            }
+            std::cerr << "error: date not exist" << std::endl;
+            return ;
         }
-        if (found)
-        {
-            std::stringstream ss(_btcValue);
-            if (ss >> btc)
-                return btc * it->second;
-        }
+        it--;
     }
-    return 0.0f;
+    std::cout << std::fixed << std::setprecision(2) << date << " => " << f_value * it->second << std::endl;
 }
 
 
@@ -189,7 +192,7 @@ bool parseDateValue(const std::string &date, const std::string &value)
     std::string year = date.substr(0, 4);
     std::string month = date.substr(5, 2);
     std::string day = date.substr(8, 2);
-    if (!isYearValid(year) || !isMonthValid(month) || !isDayValid(day))
+    if (!isYearValid(year) || !isMonthValid(month) || !isDayValid(day) || !daysFebruary(year, month, day))
     {
         std::cerr << "Error: bad date => " << date << std::endl;
         return false;
@@ -218,6 +221,8 @@ void BitcoinExchange::execute()
         throw std::runtime_error("Error: filename is empty");
     while (std::getline(input, line))
     {
+        if (line == "date | value" || line.empty())
+            continue ;
         pipePos = line.find("|");
         if (pipePos == std::string::npos || pipePos == 0 || pipePos == line.size() - 1)
         {
@@ -228,8 +233,7 @@ void BitcoinExchange::execute()
         value = ft_trim(line.substr(pipePos + 1));
         if (!parseDateValue(date, value))
             continue;
-        if (line != "date | value")
-            std::cout << date << " | " << value << std::endl;
+        displayResult(date, value);
     }
     input.close();
 }

@@ -14,7 +14,6 @@ class BitcoinExchange
     private:
         std::string _inputFile;
         std::map <std::string, float> _exchangeRates;
-        std::map <std::string, int> _input;
     
     public:
         BitcoinExchange();
@@ -24,7 +23,6 @@ class BitcoinExchange
         ~BitcoinExchange();
         
         void createExchangeRatesMap();
-        void createInputMap();
         float getBtcValue();
 
         void execute();

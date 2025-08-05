@@ -115,33 +115,33 @@ bool checkBtcValue(const std::string &btcValue)
 }
 
 
-// float BitcoinExchange::getBtcValue()
-// {
-//     std::string year = _date[0];
-//     std::string month = _date[1];
-//     std::string day = _date[2];
-//     float btc;
-//     bool found = false;
+float BitcoinExchange::getBtcValue()
+{
+    std::string year = _date[0];
+    std::string month = _date[1];
+    std::string day = _date[2];
+    float btc;
+    bool found = false;
 
-//     for (std::map<std::string, float>::iterator it = _exchangeRates.begin(); it != _exchangeRates.end(); ++it)
-//     {
-//         if (it->first.substr(0, 4) == year)
-//         {
-//             if (it->first.substr(5, 2) == month)
-//             {
-//                 if (it->first.substr(8, 2) >= day)
-//                     found = true;
-//             }
-//         }
-//         if (found)
-//         {
-//             std::stringstream ss(_btcValue);
-//             if (ss >> btc)
-//                 return btc * it->second;
-//         }
-//     }
-//     return 0.0f;
-// }
+    for (std::map<std::string, float>::iterator it = _exchangeRates.begin(); it != _exchangeRates.end(); ++it)
+    {
+        if (it->first.substr(0, 4) == year)
+        {
+            if (it->first.substr(5, 2) == month)
+            {
+                if (it->first.substr(8, 2) >= day)
+                    found = true;
+            }
+        }
+        if (found)
+        {
+            std::stringstream ss(_btcValue);
+            if (ss >> btc)
+                return btc * it->second;
+        }
+    }
+    return 0.0f;
+}
 
 
 // ------------- MAP CREATION ----------------
@@ -181,6 +181,21 @@ bool parseDateValue(const std::string &date, const std::string &value)
         std::cerr << "Error: empty date or value." << std::endl;
         return false;
     }
+    if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+    {
+        std::cerr << "Error: bad date format => " << date << std::endl;
+        return false;
+    }
+    std::string year = date.substr(0, 4);
+    std::string month = date.substr(5, 2);
+    std::string day = date.substr(8, 2);
+    if (!isYearValid(year) || !isMonthValid(month) || !isDayValid(day))
+    {
+        std::cerr << "Error: bad date => " << date << std::endl;
+        return false;
+    }
+    if (!checkBtcValue(value))
+        return false;
     return true;
 }
 

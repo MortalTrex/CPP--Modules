@@ -30,7 +30,9 @@ int main(int argc, char **argv)
         clock_t start = clock();
 
         PmergeMe merge;
-        merge.mergeSort(Vnb);
+        size_t count = 0;
+        merge.mergeSort(Vnb, count);
+        std::cout << "\033[34mCount of comparisons: " << count << "\033[0m" << std::endl;
         
         // CLOCK PRINT
         clock_t end = clock();

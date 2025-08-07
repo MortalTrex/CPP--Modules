@@ -21,7 +21,7 @@ class PmergeMe
         PmergeMe &operator=(const PmergeMe &src);
         ~PmergeMe();
 
-        void mergeSort(std::vector<unsigned int> &nb);
+        void mergeSort(std::vector<unsigned int> &nb, size_t &count);
         void mergeSort(std::deque<unsigned int> &nb);
 };
 

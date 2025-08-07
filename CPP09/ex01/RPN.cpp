@@ -29,44 +29,47 @@ RPN::~RPN() {}
 // ------ Member function ------
 void RPN::calculate()
 {
-    std::stack<double> stack;
+    std::list<double> list;
     std::istringstream ssExpression(_expression);
     std::string token;
-    int a;
-    int b;
 
     while (ssExpression >> token)
     {
-        if ((token.size() == 1 && isdigit(token[0])) || token == "10")
+        char *check;
+        double value = std::strtod(token.c_str(), &check);
+        if (*check == '\0') // conversion complète réussie
         {
-            char *check;
-            stack.push(strtod(token.c_str(), &check));
-            if (check);
-                throw std::invalid_argument("");
+            list.push_back(value);
         }
         else if (token == "+" || token == "-" || token == "*" || token == "/")
         {
-            if (stack.size() < 2)
+            if (list.size() < 2)
                 throw std::invalid_argument("Not enough operands");
-            b = stack.top();
-            stack.pop();
 
-            a = stack.top();
-            stack.pop();
+            double b = list.back(); 
+            list.pop_back();
+            double a = list.back();
+            list.pop_back();
 
             if (token == "+")
-                stack.push(a + b);
+                list.push_back(a + b);
             else if (token == "-")
-                stack.push(a - b);
+                list.push_back(a - b);
             else if (token == "*")
-                stack.push(a * b);
+                list.push_back(a * b);
             else if (token == "/")
-                stack.push(a / b);
+            {
+                if (b == 0)
+                    throw std::invalid_argument("Division by zero");
+                list.push_back(a / b);
+            }
         }
         else
-            throw std::invalid_argument("Bad argument");
+            throw std::invalid_argument("Bad argument: " + token);
     }
-    if (stack.size() != 1)
-        throw std::runtime_error("too many values in the stack at the end");
-    std::cout << stack.top() << std::endl;
+
+    if (list.size() != 1)
+        throw std::runtime_error("Too many values in the list at the end");
+
+    std::cout << list.back() << std::endl;
 }

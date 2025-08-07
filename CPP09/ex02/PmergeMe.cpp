@@ -96,6 +96,11 @@ void PmergeMe::mergeSort(std::deque<unsigned int> &nb)
 
 #include <cmath>
 
+
+
+
+
+
 // VECTOR VERSION
 void PmergeMe::mergeSort(std::vector<unsigned int> &listNb, size_t &count)  
 {  
@@ -142,7 +147,7 @@ void PmergeMe::mergeSort(std::vector<unsigned int> &listNb, size_t &count)
     for (size_t i = 0; i < jacobList.size(); i++)
     {
         int valueToInsert = Pend[jacobList[i]];
-        count += std::log2(Main.size());
+        //count += std::log2(Main.size());
         std::vector<unsigned int>::iterator posInMain = std::lower_bound(Main.begin(), Main.end(), valueToInsert);
         Main.insert(posInMain, valueToInsert);
     }

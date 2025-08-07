@@ -160,8 +160,7 @@ void BitcoinExchange::createExchangeRatesMap()
         date = ft_trim(line.substr(0, commaPos));
         valueStr = line.substr(commaPos + 1);
         if (!isValidLine(date, valueStr))
-            continue;
-
+            throw std::invalid_argument("Wrong data.csv");
         std::stringstream ss(valueStr);
         if (ss >> value)
             _exchangeRates[date] = value;
